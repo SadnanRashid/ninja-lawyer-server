@@ -16,7 +16,7 @@ const connectDatabase = () => {
 
 const getCollection = (collection) => {
   const client = connectDatabase();
-  return client.db("address-book").collection(collection);
+  return client.db("ninja_lawyer").collection(collection);
 };
 
 module.exports = {
