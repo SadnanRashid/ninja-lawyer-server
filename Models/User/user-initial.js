@@ -26,4 +26,4 @@ const QueryGetUser = async (id) => {
   }
 };
 
-module.exports = { QueryAddUser };
+module.exports = { QueryAddUser, QueryGetUser };

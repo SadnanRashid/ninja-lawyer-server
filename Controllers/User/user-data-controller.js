@@ -12,4 +12,14 @@ const PostUser = async (req, res) => {
   return res.json(postResult);
 };
 
+// Get user details function
+const GetUser = async (req, res) => {
+  // get from database
+  const targetUser = await QueryGetUser(req.params.id);
+  if (!targetUser) {
+    return res.status(404).send({ message: "data not found" });
+  }
+  return res.json(targetUser);
+};
+
 module.exports = { PostUser };
