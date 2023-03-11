@@ -1,6 +1,7 @@
 const {
   QueryAddUser,
   QueryGetUser,
+  QueryUpdateUserDetails,
 } = require("../../Models/User/user-initial");
 const { currentTime } = require("../../Services/timestamp");
 
@@ -26,4 +27,16 @@ const GetUser = async (req, res) => {
   return res.json(targetUser);
 };
 
-module.exports = { PostUser, GetUser };
+// Update Details
+const UpdateUser = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const updateResult = await QueryUpdateUserDetails(
+    id,
+    req.body.element_to_update,
+    req.body.update_data
+  );
+  res.json(updateResult);
+};
+
+module.exports = { PostUser, GetUser, UpdateUser };

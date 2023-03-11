@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   PostUser,
   GetUser,
+  UpdateUser,
 } = require("../../Controllers/User/user-data-controller");
 
 router.get("/test", () => {
@@ -12,6 +13,8 @@ router.get("/test", () => {
 router.post("/add", PostUser);
 // Get user data from database
 router.get("/get/:id", GetUser);
+// Update user data from database
+router.get("/update/:id", UpdateUser);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);

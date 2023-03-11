@@ -46,4 +46,4 @@ const QueryUpdateUserDetails = async (userID, elementToUpdate, updateData) => {
   }
 };
 
-module.exports = { QueryAddUser, QueryGetUser };
+module.exports = { QueryAddUser, QueryGetUser, QueryUpdateUserDetails };
