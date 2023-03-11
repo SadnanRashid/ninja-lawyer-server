@@ -5,6 +5,7 @@ const {
   GetUser,
   UpdateUser,
 } = require("../../Controllers/User/user-data-controller");
+const { GetRecords } = require("../../Controllers/User/user-log-controller");
 
 router.get("/test", () => {
   console.log("Working test");
@@ -15,6 +16,8 @@ router.post("/add", PostUser);
 router.get("/get/:id", GetUser);
 // Update user data from database
 router.put("/update/:id", UpdateUser);
+// Get user logs from database
+router.get("/get-logs/:id", GetRecords);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);

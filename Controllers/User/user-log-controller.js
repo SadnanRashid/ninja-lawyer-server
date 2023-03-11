@@ -29,11 +29,11 @@ const PostRecord = async (data) => {
 const GetRecords = async (req, res) => {
   // get from database
   const logs = await QueryGetRecords(req.params.id);
-  console.log(targetUser);
-  if (!targetUser) {
+  console.log(logs);
+  if (!logs) {
     return res.status(404).send({ message: "data not found" });
   }
-  return res.json(targetUser);
+  return res.json(logs);
 };
 
 module.exports = { PostRecord, GetRecords };
