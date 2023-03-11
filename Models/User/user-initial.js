@@ -15,4 +15,15 @@ const QueryAddUser = async (data) => {
   }
 };
 
+// Function to call database get specific user details
+const QueryGetUser = async (id) => {
+  try {
+    const query = { _id: ObjectId(id) };
+    const cursor = await getCollection("users").findOne(query);
+    return cursor;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = { QueryAddUser };
