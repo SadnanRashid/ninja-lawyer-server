@@ -11,7 +11,7 @@ const PostRecord = async (req, res) => {
   //   add time to post data
   data.timestamp = timeStamp;
   //   Get results from database
-  const postResult = await QueryAddUser(data);
+  const postResult = await QueryAddRecord(data);
   return res.json(postResult);
 };
 
@@ -36,3 +36,10 @@ const UpdateUser = async (req, res) => {
 };
 
 module.exports = { PostRecord, GetRecords };
+
+// POSTRECORD:
+// const doc = {
+//     userID: "1287yf2387fh873hee",
+//     action: "profile update",
+//     timestamp: time
+// }

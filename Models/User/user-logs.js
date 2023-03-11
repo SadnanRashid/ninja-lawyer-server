@@ -24,4 +24,4 @@ const QueryGetRecords = async (id) => {
   }
 };
 
-module.exports = { QueryAddUser, QueryGetUser, QueryUpdateUserDetails };
+module.exports = { QueryAddRecord, QueryGetRecords };
