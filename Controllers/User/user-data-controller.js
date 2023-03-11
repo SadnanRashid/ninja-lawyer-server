@@ -1,4 +1,7 @@
-const { QueryAddUser } = require("../../Models/User/user-initial");
+const {
+  QueryAddUser,
+  QueryGetUser,
+} = require("../../Models/User/user-initial");
 const { currentTime } = require("../../Services/timestamp");
 
 const PostUser = async (req, res) => {
@@ -22,4 +25,4 @@ const GetUser = async (req, res) => {
   return res.json(targetUser);
 };
 
-module.exports = { PostUser };
+module.exports = { PostUser, GetUser };

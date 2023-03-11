@@ -1,12 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const { PostUser } = require("../../Controllers/User/user-data-controller");
+const {
+  PostUser,
+  GetUser,
+} = require("../../Controllers/User/user-data-controller");
 
 router.get("/test", () => {
   console.log("Working test");
 });
 // Post new use data to database
 router.post("/add", PostUser);
+// Get user data from database
+router.get("/get/:id");
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);
