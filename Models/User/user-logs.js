@@ -4,8 +4,9 @@ const { ObjectId } = require("mongodb");
 // Fucntion to post a log in database
 const QueryAddRecord = async (data) => {
   try {
-    const result = await getCollection("users").insertOne(data);
+    const result = await getCollection("users_log").insertOne(data);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    console.log(result);
     return result;
   } catch (error) {
     return error;

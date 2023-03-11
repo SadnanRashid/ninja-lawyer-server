@@ -3,6 +3,7 @@ const {
   QueryGetUser,
   QueryUpdateUserDetails,
 } = require("../../Models/User/user-initial");
+const { PostRecord, GetRecords } = require("../User/user-log-controller");
 const { addTimestampToUpdate } = require("./UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
 
@@ -34,6 +35,8 @@ const UpdateUser = async (req, res) => {
   // add last update using a sideeffect
   const data = addTimestampToUpdate(req.body.update_data);
   const updateResult = await QueryUpdateUserDetails(id, data);
+  const logResult = await PostRecord({ userID: id, action: "profile update" });
+  // ** add logResult to a obj and send both
   res.json(updateResult);
 };
 
