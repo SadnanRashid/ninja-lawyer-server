@@ -3,6 +3,7 @@ const {
   QueryGetUser,
   QueryUpdateUserDetails,
 } = require("../../Models/User/user-initial");
+const { addTimestampToUpdate } = require("./UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
 
 const PostUser = async (req, res) => {
@@ -30,12 +31,9 @@ const GetUser = async (req, res) => {
 // Update Details
 const UpdateUser = async (req, res) => {
   const id = req.params.id;
-  console.log(id);
-  const updateResult = await QueryUpdateUserDetails(
-    id,
-    req.body.element_to_update,
-    req.body.update_data
-  );
+  console.log(req.body.update_data);
+  const data = addTimestampToUpdate();
+  const updateResult = await QueryUpdateUserDetails(id, data);
   res.json(updateResult);
 };
 

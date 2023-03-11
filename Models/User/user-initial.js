@@ -28,20 +28,13 @@ const QueryGetUser = async (id) => {
 };
 
 // Update an element
-const QueryUpdateUserDetails = async (userID, elementToUpdate, updateData) => {
+const QueryUpdateUserDetails = async (userID, updateData) => {
   try {
-    const filter = { _id: ObjectId(userID) };
-    const updateDocument = {
-      $set: {
-        [elementToUpdate]: updateData,
-      },
-    };
-    const result = await getCollection("users").updateOne(
-      filter,
-      updateDocument
-    );
+    const filter = { _id: new ObjectId(userID) };
+    const result = await getCollection("users").replaceOne(filter, updateData);
     return result;
   } catch (error) {
+    console.log(error);
     return error;
   }
 };
