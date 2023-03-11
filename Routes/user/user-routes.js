@@ -11,7 +11,7 @@ router.get("/test", () => {
 // Post new use data to database
 router.post("/add", PostUser);
 // Get user data from database
-router.get("/get/:id");
+router.get("/get/:id", GetUser);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);

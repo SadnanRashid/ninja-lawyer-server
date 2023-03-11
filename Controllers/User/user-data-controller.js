@@ -19,6 +19,7 @@ const PostUser = async (req, res) => {
 const GetUser = async (req, res) => {
   // get from database
   const targetUser = await QueryGetUser(req.params.id);
+  console.log(targetUser);
   if (!targetUser) {
     return res.status(404).send({ message: "data not found" });
   }

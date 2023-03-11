@@ -1,4 +1,5 @@
 const { getCollection } = require("../database");
+const { ObjectId } = require("mongodb");
 
 const QueryAddUser = async (data) => {
   try {
@@ -18,9 +19,28 @@ const QueryAddUser = async (data) => {
 // Function to call database get specific user details
 const QueryGetUser = async (id) => {
   try {
-    const query = { _id: ObjectId(id) };
+    const query = { _id: new ObjectId(id) };
     const cursor = await getCollection("users").findOne(query);
     return cursor;
+  } catch (error) {
+    return error;
+  }
+};
+
+// Update an element
+const QueryUpdateUserDetails = async (userID, elementToUpdate, updateData) => {
+  try {
+    const filter = { _id: ObjectId(userID) };
+    const updateDocument = {
+      $set: {
+        [elementToUpdate]: updateData,
+      },
+    };
+    const result = await getCollection("users").updateOne(
+      filter,
+      updateDocument
+    );
+    return result;
   } catch (error) {
     return error;
   }
