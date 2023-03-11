@@ -31,8 +31,8 @@ const GetUser = async (req, res) => {
 // Update Details
 const UpdateUser = async (req, res) => {
   const id = req.params.id;
-  console.log(req.body.update_data);
-  const data = addTimestampToUpdate();
+  // add last update using a sideeffect
+  const data = addTimestampToUpdate(req.body.update_data);
   const updateResult = await QueryUpdateUserDetails(id, data);
   res.json(updateResult);
 };
