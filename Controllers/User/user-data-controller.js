@@ -8,12 +8,12 @@ const { addTimestampToUpdate } = require("./UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
 
 const PostUser = async (req, res) => {
-  // Get current server time
+  //Get current server time
   const timeStamp = currentTime();
   const data = req.body;
-  //   add time to post data
+  //add time to post data
   data.timestamp = timeStamp;
-  //   Get results from database
+  //Get results from database
   const postResult = await QueryAddUser(data);
   return res.json(postResult);
 };
