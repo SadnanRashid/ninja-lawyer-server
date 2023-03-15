@@ -3,11 +3,6 @@ const { ObjectId } = require("mongodb");
 
 const QueryAddUser = async (data) => {
   try {
-    const doc = {
-      name: "sadnan rashid",
-      email: "sadnan.rashid.07@gmail.com",
-      phone: "+8801312300741",
-    };
     const result = await getCollection("users").insertOne(data);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
     return result;
@@ -17,9 +12,9 @@ const QueryAddUser = async (data) => {
 };
 
 // Function to call database get specific user details
-const QueryGetUser = async (id) => {
+const QueryGetUser = async (UID) => {
   try {
-    const query = { _id: new ObjectId(id) };
+    const query = { UID: UID };
     const cursor = await getCollection("users").findOne(query);
     return cursor;
   } catch (error) {
@@ -28,10 +23,12 @@ const QueryGetUser = async (id) => {
 };
 
 // Update an element
-const QueryUpdateUserDetails = async (userID, updateData) => {
+const QueryUpdateUserDetails = async (UID, updateData) => {
+  console.log("------");
   try {
-    const filter = { _id: new ObjectId(userID) };
+    const filter = { UID: UID };
     const result = await getCollection("users").replaceOne(filter, updateData);
+    console.log(result, "------");
     return result;
   } catch (error) {
     console.log(error);
@@ -39,4 +36,8 @@ const QueryUpdateUserDetails = async (userID, updateData) => {
   }
 };
 
-module.exports = { QueryAddUser, QueryGetUser, QueryUpdateUserDetails };
+module.exports = {
+  QueryAddUser,
+  QueryGetUser,
+  QueryUpdateUserDetails,
+};
