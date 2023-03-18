@@ -4,6 +4,7 @@ const {
   QueryUpdateUserDetails,
   QueryGetAll,
   QueryDeleteUser,
+  QueryUpdateLawyerDetails,
 } = require("../../Models/User/user-initial");
 const { addTimestampToUpdate } = require("../User/UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
@@ -49,7 +50,25 @@ const UpdateLawyer = async (req, res) => {
   let data = req.body;
   // add last update using a sideeffect
   data = addTimestampToUpdate(data);
-  const updateResult = await QueryUpdateUserDetails(id, data, "lawyers");
+  //
+  const updateFields = {
+    $set: {
+      fname: data.fname,
+      state: data.state,
+      city: data.city,
+      pincode: data.pincode,
+      rate: data.rate,
+      language: data.language,
+      specialties: data.specialties,
+      summary: data.summary,
+      // add any other fields you want to update here
+    },
+  };
+  const updateResult = await QueryUpdateLawyerDetails(
+    id,
+    updateFields,
+    "lawyers"
+  );
   // ** add logResult to a obj and send both
   res.json(updateResult);
 };

@@ -11,6 +11,7 @@ const {
   GetLawyer,
   GetAllLawyer,
   DeleteLawyer,
+  UpdateLawyer,
 } = require("../../Controllers/Lawyer/lawyer-data-controller");
 
 router.get("/test", () => {
@@ -25,6 +26,7 @@ router.put("/update/:id", UpdateUser);
 // Get user logs from database
 router.get("/get-logs/:id", GetRecords);
 
+//
 // Lawyer routes
 router.post("/add-lawyer", PostLawyer);
 // Get all lawyers
@@ -34,7 +36,7 @@ router.delete("/lawyer/delete/:id", DeleteLawyer);
 // Get one lawyer details
 router.get("/get-lawyer/:id", GetLawyer);
 // Update lawyer data
-router.put("/lawyer/update/:id");
+router.put("/lawyer/update/:id", UpdateLawyer);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);

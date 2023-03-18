@@ -50,6 +50,22 @@ const QueryUpdateUserDetails = async (UID, updateData, collection) => {
     return error;
   }
 };
+// // Update an element
+const QueryUpdateLawyerDetails = async (UID, updateData, collection) => {
+  console.log("------");
+  try {
+    const filter = { UID: UID };
+    const result = await getCollection(collection).updateOne(
+      filter,
+      updateData
+    );
+    console.log(result, "------");
+    return result;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
 
 // Delete a record
 const QueryDeleteUser = async (UID, collection) => {
@@ -69,4 +85,5 @@ module.exports = {
   QueryUpdateUserDetails,
   QueryGetAll,
   QueryDeleteUser,
+  QueryUpdateLawyerDetails,
 };
