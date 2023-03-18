@@ -3,8 +3,7 @@ const {
   QueryGetUser,
   QueryUpdateUserDetails,
 } = require("../../Models/User/user-initial");
-const { PostRecord, GetRecords } = require("../User/user-log-controller");
-const { addTimestampToUpdate } = require("./UserSides/manipulate.update");
+const { addTimestampToUpdate } = require("../User/UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
 
 const PostLawyer = async (req, res) => {
@@ -23,7 +22,7 @@ const PostLawyer = async (req, res) => {
 // Get user details function
 const GetLawyer = async (req, res) => {
   // get from database
-  const targetUser = await QueryGetUser(req.params.id);
+  const targetUser = await QueryGetUser(req.params.id, "lawyers");
   console.log(targetUser);
   if (!targetUser) {
     return res.status(404).send({ message: "data not found" });

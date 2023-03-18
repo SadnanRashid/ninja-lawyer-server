@@ -6,6 +6,10 @@ const {
   UpdateUser,
 } = require("../../Controllers/User/user-data-controller");
 const { GetRecords } = require("../../Controllers/User/user-log-controller");
+const {
+  PostLawyer,
+  GetLawyer,
+} = require("../../Controllers/Lawyer/lawyer-data-controller");
 
 router.get("/test", () => {
   console.log("Working test");
@@ -20,7 +24,8 @@ router.put("/update/:id", UpdateUser);
 router.get("/get-logs/:id", GetRecords);
 
 // Lawyer routes
-router.post("/add-lawyer", PostUser);
+router.post("/add-lawyer", PostLawyer);
+router.get("/get-lawyer/:id", GetLawyer);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);
