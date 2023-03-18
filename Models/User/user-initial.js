@@ -35,11 +35,14 @@ const QueryGetAll = async (collection) => {
 };
 
 // Update an element
-const QueryUpdateUserDetails = async (UID, updateData) => {
+const QueryUpdateUserDetails = async (UID, updateData, collection) => {
   console.log("------");
   try {
     const filter = { UID: UID };
-    const result = await getCollection("users").replaceOne(filter, updateData);
+    const result = await getCollection(collection).replaceOne(
+      filter,
+      updateData
+    );
     console.log(result, "------");
     return result;
   } catch (error) {
