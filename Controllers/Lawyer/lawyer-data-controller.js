@@ -3,6 +3,7 @@ const {
   QueryGetUser,
   QueryUpdateUserDetails,
   QueryGetAll,
+  QueryDeleteUser,
 } = require("../../Models/User/user-initial");
 const { addTimestampToUpdate } = require("../User/UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
@@ -50,6 +51,14 @@ const UpdateLawyer = async (req, res) => {
   data = addTimestampToUpdate(req.body.update_data);
   console.log(data);
   const updateResult = await QueryUpdateUserDetails(id, data);
+  // ** add logResult to a obj and send both
+  res.json(updateResult);
+};
+
+// Delete lawyer
+const DeleteLawyer = async (req, res) => {
+  const id = req.params.id;
+  const updateResult = await QueryDeleteUser(id, "lawyers");
   // ** add logResult to a obj and send both
   res.json(updateResult);
 };

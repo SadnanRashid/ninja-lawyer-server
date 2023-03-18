@@ -48,9 +48,22 @@ const QueryUpdateUserDetails = async (UID, updateData) => {
   }
 };
 
+// Delete a record
+const QueryDeleteUser = async (UID, collection) => {
+  try {
+    const filter = { UID: UID };
+    const result = await getCollection(collection).deleteOne(filter);
+    return result;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+};
+
 module.exports = {
   QueryAddUser,
   QueryGetUser,
   QueryUpdateUserDetails,
   QueryGetAll,
+  QueryDeleteUser,
 };
