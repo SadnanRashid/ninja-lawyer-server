@@ -19,6 +19,9 @@ router.put("/update/:id", UpdateUser);
 // Get user logs from database
 router.get("/get-logs/:id", GetRecords);
 
+// Lawyer routes
+router.post("/add-lawyer", PostUser);
+
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);
 // router.get("/getmatch/:phase", validateParamOfPhase, GetMatchingContact);
