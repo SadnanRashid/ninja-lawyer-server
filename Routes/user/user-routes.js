@@ -9,6 +9,7 @@ const { GetRecords } = require("../../Controllers/User/user-log-controller");
 const {
   PostLawyer,
   GetLawyer,
+  GetAllLawyer,
 } = require("../../Controllers/Lawyer/lawyer-data-controller");
 
 router.get("/test", () => {
@@ -26,6 +27,8 @@ router.get("/get-logs/:id", GetRecords);
 // Lawyer routes
 router.post("/add-lawyer", PostLawyer);
 router.get("/get-lawyer/:id", GetLawyer);
+// Get all lawyers
+router.get("/get-lawyer/all", GetAllLawyer);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);

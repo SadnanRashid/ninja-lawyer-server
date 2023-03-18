@@ -2,6 +2,7 @@ const {
   QueryAddUser,
   QueryGetUser,
   QueryUpdateUserDetails,
+  QueryGetAll,
 } = require("../../Models/User/user-initial");
 const { addTimestampToUpdate } = require("../User/UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
@@ -30,6 +31,17 @@ const GetLawyer = async (req, res) => {
   return res.json(targetUser);
 };
 
+// Get all lawyers details
+const GetAllLawyer = async (req, res) => {
+  // get from database
+  const targetUser = await QueryGetAll("lawyers");
+  console.log(targetUser);
+  if (!targetUser) {
+    return res.status(404).send({ message: "data not found" });
+  }
+  return res.json(targetUser);
+};
+
 // Update Details
 const UpdateLawyer = async (req, res) => {
   const id = req.params.id;
@@ -42,4 +54,4 @@ const UpdateLawyer = async (req, res) => {
   res.json(updateResult);
 };
 
-module.exports = { PostLawyer, GetLawyer, UpdateLawyer };
+module.exports = { PostLawyer, GetLawyer, UpdateLawyer, GetAllLawyer };

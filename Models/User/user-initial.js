@@ -22,6 +22,17 @@ const QueryGetUser = async (UID, collection) => {
   }
 };
 
+// Function to get all queries in a collection
+const QueryGetAll = async (collection) => {
+  try {
+    const query = {};
+    const cursor = getCollection(collection).find(query);
+    return cursor;
+  } catch (error) {
+    return error;
+  }
+};
+
 // Update an element
 const QueryUpdateUserDetails = async (UID, updateData) => {
   console.log("------");
@@ -40,4 +51,5 @@ module.exports = {
   QueryAddUser,
   QueryGetUser,
   QueryUpdateUserDetails,
+  QueryGetAll,
 };
