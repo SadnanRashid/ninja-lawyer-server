@@ -59,8 +59,13 @@ const UpdateLawyer = async (req, res) => {
 const DeleteLawyer = async (req, res) => {
   const id = req.params.id;
   const updateResult = await QueryDeleteUser(id, "lawyers");
-  // ** add logResult to a obj and send both
   res.json(updateResult);
 };
 
-module.exports = { PostLawyer, GetLawyer, UpdateLawyer, GetAllLawyer };
+module.exports = {
+  PostLawyer,
+  GetLawyer,
+  UpdateLawyer,
+  GetAllLawyer,
+  DeleteLawyer,
+};

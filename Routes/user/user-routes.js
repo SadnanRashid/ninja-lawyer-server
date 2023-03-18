@@ -10,6 +10,7 @@ const {
   PostLawyer,
   GetLawyer,
   GetAllLawyer,
+  DeleteLawyer,
 } = require("../../Controllers/Lawyer/lawyer-data-controller");
 
 router.get("/test", () => {
@@ -28,6 +29,9 @@ router.get("/get-logs/:id", GetRecords);
 router.post("/add-lawyer", PostLawyer);
 // Get all lawyers
 router.get("/get-lawyer/all", GetAllLawyer);
+// Delete a lawyer
+router.delete("/lawyer/delete/:id", DeleteLawyer);
+// Get one lawyer details
 router.get("/get-lawyer/:id", GetLawyer);
 
 // router.get("/all", GetAllContacts);
