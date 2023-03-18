@@ -1,9 +1,9 @@
 const { getCollection } = require("../database");
 const { ObjectId } = require("mongodb");
 
-const QueryAddUser = async (data) => {
+const QueryAddUser = async (data, collection) => {
   try {
-    const result = await getCollection("users").insertOne(data);
+    const result = await getCollection(collection).insertOne(data);
     console.log(`A document was inserted with the _id: ${result.insertedId}`);
     return result;
   } catch (error) {
@@ -12,10 +12,10 @@ const QueryAddUser = async (data) => {
 };
 
 // Function to call database get specific user details
-const QueryGetUser = async (UID) => {
+const QueryGetUser = async (UID, collection) => {
   try {
     const query = { UID: UID };
-    const cursor = await getCollection("users").findOne(query);
+    const cursor = await getCollection(collection).findOne(query);
     return cursor;
   } catch (error) {
     return error;

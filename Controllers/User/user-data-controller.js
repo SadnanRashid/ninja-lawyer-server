@@ -18,7 +18,7 @@ const PostUser = async (req, res) => {
     //add time to post data
     data.timestamp = timeStamp;
     //Get results from database
-    const postResult = await QueryAddUser(data);
+    const postResult = await QueryAddUser(data, "users");
     return res.json(postResult);
   } else {
     return res.json({ message: "Already exist" });
@@ -28,7 +28,7 @@ const PostUser = async (req, res) => {
 // Get user details function
 const GetUser = async (req, res) => {
   // get from database
-  const targetUser = await QueryGetUser(req.params.id);
+  const targetUser = await QueryGetUser(req.params.id, "users");
   console.log(targetUser);
   if (!targetUser) {
     return res.status(404).send({ message: "data not found" });

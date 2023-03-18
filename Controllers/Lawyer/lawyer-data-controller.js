@@ -11,17 +11,13 @@ const PostLawyer = async (req, res) => {
   const data = req.body;
   console.log("data", data.UID);
   //   const checkExist = await QueryGetUser(data.UID);
-  if (!checkExist) {
-    //Get current server time
-    const timeStamp = currentTime();
-    //add time to post data
-    data.timestamp = timeStamp;
-    //Get results from database
-    const postResult = await QueryAddUser(data);
-    return res.json(postResult);
-  } else {
-    return res.json({ message: "Already exist" });
-  }
+  //Get current server time
+  const timeStamp = currentTime();
+  //add time to post data
+  data.timestamp = timeStamp;
+  //Get results from database
+  const postResult = await QueryAddUser(data, "lawyers");
+  return res.json(postResult);
 };
 
 // Get user details function
