@@ -48,9 +48,8 @@ const UpdateLawyer = async (req, res) => {
   const id = req.params.id;
   let data = req.body;
   // add last update using a sideeffect
-  data = addTimestampToUpdate(req.body.update_data);
-  console.log(data);
-  const updateResult = await QueryUpdateUserDetails(id, data);
+  data = addTimestampToUpdate(data);
+  const updateResult = await QueryUpdateUserDetails(id, data, "lawyers");
   // ** add logResult to a obj and send both
   res.json(updateResult);
 };
