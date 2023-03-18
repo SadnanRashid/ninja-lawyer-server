@@ -26,9 +26,9 @@ router.get("/get-logs/:id", GetRecords);
 
 // Lawyer routes
 router.post("/add-lawyer", PostLawyer);
-router.get("/get-lawyer/:id", GetLawyer);
 // Get all lawyers
 router.get("/get-lawyer/all", GetAllLawyer);
+router.get("/get-lawyer/:id", GetLawyer);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);

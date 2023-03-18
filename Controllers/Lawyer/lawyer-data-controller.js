@@ -35,7 +35,7 @@ const GetLawyer = async (req, res) => {
 const GetAllLawyer = async (req, res) => {
   // get from database
   const targetUser = await QueryGetAll("lawyers");
-  console.log(targetUser);
+  console.log("targetUser");
   if (!targetUser) {
     return res.status(404).send({ message: "data not found" });
   }

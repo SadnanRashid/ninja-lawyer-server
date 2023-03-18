@@ -27,7 +27,8 @@ const QueryGetAll = async (collection) => {
   try {
     const query = {};
     const cursor = getCollection(collection).find(query);
-    return cursor;
+    console.log("--", cursor);
+    return cursor.toArray();
   } catch (error) {
     return error;
   }
