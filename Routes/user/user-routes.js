@@ -33,6 +33,8 @@ router.get("/get-lawyer/all", GetAllLawyer);
 router.delete("/lawyer/delete/:id", DeleteLawyer);
 // Get one lawyer details
 router.get("/get-lawyer/:id", GetLawyer);
+// Update lawyer data
+router.put("/lawyer/update/:id");
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);
