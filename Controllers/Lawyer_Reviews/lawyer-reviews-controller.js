@@ -4,6 +4,7 @@ const {
   QueryUpdateUserDetails,
 } = require("../../Models/User/user-initial");
 const { currentTime } = require("../../Services/timestamp");
+import { QueryGetReviews } from "../../Models/Reviews/review-queries";
 
 const PostReview = async (req, res) => {
   const data = req.body;
@@ -19,7 +20,7 @@ const PostReview = async (req, res) => {
 // Get user details function
 const GetReviews = async (req, res) => {
   // get from database
-  const targetUser = await QueryGetUser(req.params.id, "users");
+  const reviewsRef = await QueryGetReviews(req.params.id, "users");
   console.log(targetUser);
   if (!targetUser) {
     return res.status(404).send({ message: "data not found" });
