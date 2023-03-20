@@ -1,6 +1,9 @@
 const { QueryAddUser } = require("../../Models/User/user-initial");
 const { currentTime } = require("../../Services/timestamp");
-const { QueryGetReviews } = require("../../Models/Reviews/review-queries");
+const {
+  QueryGetReviews,
+  QueryAddReview,
+} = require("../../Models/Reviews/review-queries");
 
 const PostReview = async (req, res) => {
   const lawyerID = req.params.id;
@@ -10,7 +13,7 @@ const PostReview = async (req, res) => {
   //add time to post data
   data.timestamp = timeStamp;
   //Get results from database
-  const postResult = await QueryAddUser(lawyerID, data, "users");
+  const postResult = await QueryAddReview(lawyerID, data, "lawyer_reviews");
   return res.json(postResult);
 };
 

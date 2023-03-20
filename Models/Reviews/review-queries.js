@@ -12,10 +12,22 @@ const QueryGetReviews = async (UID, collection) => {
   }
 };
 
-const QueryAddReview = async (lawyerID, data, collection) => {
+const QueryAddReview = async (lawyerID, review, collection) => {
   try {
-    const result = await getCollection(collection).insertOne(data);
-    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    const query = { lawyerUID: lawyerID };
+    const result = await getCollection(collection).updateOne(
+      query,
+      { $push: { reviews: review } },
+      (err, Result) => {
+        if (err) {
+          console.error(err);
+          return err;
+        }
+        console.log(`Added review to lawyer ${lawyerId}: ${review}`);
+      }
+    );
+    // const result = await getCollection(collection).insertOne(data);
+    // console.log(`A document was inserted with the _id: ${result.insertedId}`);
     return result;
   } catch (error) {
     return error;
@@ -24,6 +36,7 @@ const QueryAddReview = async (lawyerID, data, collection) => {
 
 module.exports = {
   QueryGetReviews,
+  QueryAddReview,
 };
 
 // {UID: "asfiu3ruiwjci",
