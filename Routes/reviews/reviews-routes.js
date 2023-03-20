@@ -9,9 +9,9 @@ router.get("/test", () => {
   console.log("Working test");
 });
 // Post new review data to database
-router.post("/add", PostReview);
+router.post("/add/:id", PostReview);
 // Get all reviews data to database
-router.get("/get", GetReviews);
+router.get("/get/:id", GetReviews);
 
 // return router
 module.exports = router;

@@ -2,9 +2,9 @@ const { getCollection } = require("../database");
 const { ObjectId } = require("mongodb");
 
 // Function to call database get specific user details
-const QueryGetReviews = async (UID, collection) => {
+const QueryGetReviews = async (lawyerUID, collection) => {
   try {
-    const query = { UID: UID };
+    const query = { lawyerUID: lawyerUID };
     const cursor = await getCollection(collection).findOne(query);
     return cursor;
   } catch (error) {

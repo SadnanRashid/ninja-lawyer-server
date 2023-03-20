@@ -8,7 +8,7 @@ const {
 const PostReview = async (req, res) => {
   const lawyerID = req.params.id;
   const data = req.body;
-  console.log("data", data.UID);
+  console.log("data", data);
   const timeStamp = currentTime();
   //add time to post data
   data.timestamp = timeStamp;
@@ -20,7 +20,7 @@ const PostReview = async (req, res) => {
 // Get user details function
 const GetReviews = async (req, res) => {
   // get from database
-  const reviewsRef = await QueryGetReviews(req.params.id, "users");
+  const reviewsRef = await QueryGetReviews(req.params.id, "lawyer_reviews");
   console.log(reviewsRef);
   if (!reviewsRef) {
     return res.status(404).send({ message: "data not found" });
