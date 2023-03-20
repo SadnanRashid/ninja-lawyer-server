@@ -20,6 +20,8 @@ app.listen(port, () => {
 // Get user router
 const userRouter = require("./Routes/user/user-routes");
 app.use("/api/users", userRouter);
+// Get reviews router
+const reviewsRouter = require("./Routes/reviews/reviews-routes");
 
 app.get("/", (req, res) => {
   res.send({ message: "Working..." });

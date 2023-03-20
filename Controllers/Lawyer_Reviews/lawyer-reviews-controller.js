@@ -1,10 +1,6 @@
-const {
-  QueryAddUser,
-  QueryGetUser,
-  QueryUpdateUserDetails,
-} = require("../../Models/User/user-initial");
+const { QueryAddUser } = require("../../Models/User/user-initial");
 const { currentTime } = require("../../Services/timestamp");
-import { QueryGetReviews } from "../../Models/Reviews/review-queries";
+const { QueryGetReviews } = require("../../Models/Reviews/review-queries");
 
 const PostReview = async (req, res) => {
   const data = req.body;
@@ -28,4 +24,4 @@ const GetReviews = async (req, res) => {
   return res.json(reviewsRef);
 };
 
-module.exports = { PostUser, GetUser, UpdateUser };
+module.exports = { PostReview, GetReviews };
