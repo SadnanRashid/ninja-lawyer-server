@@ -21,11 +21,11 @@ const PostReview = async (req, res) => {
 const GetReviews = async (req, res) => {
   // get from database
   const reviewsRef = await QueryGetReviews(req.params.id, "users");
-  console.log(targetUser);
-  if (!targetUser) {
+  console.log(reviewsRef);
+  if (!reviewsRef) {
     return res.status(404).send({ message: "data not found" });
   }
-  return res.json(targetUser);
+  return res.json(reviewsRef);
 };
 
 module.exports = { PostUser, GetUser, UpdateUser };
