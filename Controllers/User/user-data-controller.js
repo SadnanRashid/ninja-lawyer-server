@@ -9,9 +9,8 @@ const { currentTime } = require("../../Services/timestamp");
 
 const PostUser = async (req, res) => {
   const data = req.body;
-  console.log("data", data.UID);
-  const checkExist = await QueryGetUser(data.UID);
-  console.log("aa", checkExist);
+  // console.log("data", data.UID);
+  const checkExist = await QueryGetUser(data.UID, "users");
   if (!checkExist) {
     //Get current server time
     const timeStamp = currentTime();

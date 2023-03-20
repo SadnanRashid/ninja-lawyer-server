@@ -12,6 +12,16 @@ const QueryGetReviews = async (UID, collection) => {
   }
 };
 
+const QueryAddReview = async (lawyerID, data, collection) => {
+  try {
+    const result = await getCollection(collection).insertOne(data);
+    console.log(`A document was inserted with the _id: ${result.insertedId}`);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   QueryGetReviews,
 };
