@@ -27,3 +27,9 @@ app.use("/api/reviews", reviewsRouter);
 app.get("/", (req, res) => {
   res.send({ message: "Working..." });
 });
+
+const { checkConnection } = require("./Models/database");
+app.get("/check-connections", (req, res) => {
+  const result = checkConnection();
+  res.json(result);
+});

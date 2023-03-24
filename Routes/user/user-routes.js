@@ -30,7 +30,7 @@ router.get("/get-logs/:id", GetRecords);
 // Lawyer routes
 router.post("/add-lawyer", PostLawyer);
 // Get all lawyers
-router.get("/get-lawyer/all", GetAllLawyer);
+router.get("/get-lawyers/all", GetAllLawyer);
 // Delete a lawyer
 router.delete("/lawyer/delete/:id", DeleteLawyer);
 // Get one lawyer details

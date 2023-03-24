@@ -19,6 +19,13 @@ const getCollection = (collection) => {
   return client.db("ninja_lawyer").collection(collection);
 };
 
+const checkConnection = () => {
+  const status = connectDatabase().serverStatus();
+  console.log(status);
+  return status;
+};
+
 module.exports = {
   getCollection,
+  checkConnection,
 };
