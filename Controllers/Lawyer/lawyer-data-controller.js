@@ -6,9 +6,13 @@ const {
   QueryDeleteUser,
   QueryUpdateLawyerDetails,
 } = require("../../Models/User/user-initial");
-const { QueryUnverfiedLawyer } = require("../../Models/Lawyers/lawyer-model");
+const {
+  QueryUnverfiedLawyer,
+  QuerySearchLaywer,
+} = require("../../Models/Lawyers/lawyer-model");
 const { addTimestampToUpdate } = require("../User/UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
+const { titleCase } = require("../../Services/capitalize");
 
 const PostLawyer = async (req, res) => {
   const data = req.body;
@@ -38,6 +42,25 @@ const GetLawyer = async (req, res) => {
 const GetAllLawyer = async (req, res) => {
   // get from database
   const targetUser = await QueryGetAll("lawyers");
+  console.log("targetUser");
+  if (!targetUser) {
+    return res.status(404).send({ message: "data not found" });
+  }
+  return res.json(targetUser);
+};
+
+// Get all lawyers details
+const GetQueryLawyer = async (req, res) => {
+  const perams = req.query;
+  const searchKey = Object.keys(perams)[0];
+  let searchValue = Object.values(perams)[0];
+  searchValue = titleCase(searchValue);
+  console.log(searchValue);
+  let query = {};
+  // Assign key and value to query object
+  query[searchKey] = searchValue;
+  // get from database
+  const targetUser = await QuerySearchLaywer(query, "lawyers");
   console.log("targetUser");
   if (!targetUser) {
     return res.status(404).send({ message: "data not found" });
@@ -105,4 +128,5 @@ module.exports = {
   GetAllLawyer,
   DeleteLawyer,
   GetAllUnverfiedLawyer,
+  GetQueryLawyer,
 };
