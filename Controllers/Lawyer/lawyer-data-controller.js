@@ -53,14 +53,16 @@ const UpdateLawyer = async (req, res) => {
   //
   const updateFields = {
     $set: {
-      fname: data.fname,
+      name: data.name,
       state: data.state,
-      city: data.city,
-      pincode: data.pincode,
+      city: data.city, 
       rate: data.rate,
-      language: data.language,
+      languages: data.languages,
       specialties: data.specialties,
       summary: data.summary,
+      contact: data.contact,
+      bar: data.bar,
+      id: data.id,
       // add any other fields you want to update here
     },
   };
