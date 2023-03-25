@@ -13,8 +13,10 @@ const {
   DeleteLawyer,
   UpdateLawyer,
   GetAllUnverfiedLawyer,
-  GetQueryLawyer,
 } = require("../../Controllers/Lawyer/lawyer-data-controller");
+const {
+  GetQueryLawyer,
+} = require("../../Controllers/Lawyer/lawyer-search-controller");
 
 router.get("/test", () => {
   console.log("Working test");
