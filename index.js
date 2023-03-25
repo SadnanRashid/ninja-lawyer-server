@@ -28,8 +28,7 @@ app.get("/", (req, res) => {
   res.send({ message: "Working..." });
 });
 
-const { checkConnection } = require("./Models/database");
-app.get("/check-connections", (req, res) => {
-  const result = checkConnection();
-  res.json(result);
+app.get("/check?q=node&page=2", (req, res) => {
+  // const result = checkConnection();
+  res.json(req.query);
 });
