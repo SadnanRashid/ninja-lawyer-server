@@ -12,6 +12,7 @@ const {
   GetAllLawyer,
   DeleteLawyer,
   UpdateLawyer,
+  GetAllUnverfiedLawyer,
 } = require("../../Controllers/Lawyer/lawyer-data-controller");
 
 router.get("/test", () => {
@@ -30,13 +31,15 @@ router.get("/get-logs/:id", GetRecords);
 // Lawyer routes
 router.post("/add-lawyer", PostLawyer);
 // Get all lawyers
-router.get("/get-lawyer/all", GetAllLawyer);
+router.get("/get-lawyers/all", GetAllLawyer);
 // Delete a lawyer
 router.delete("/lawyer/delete/:id", DeleteLawyer);
 // Get one lawyer details
 router.get("/get-lawyer/:id", GetLawyer);
 // Update lawyer data
 router.put("/lawyer/update/:id", UpdateLawyer);
+// Get all unverified lawyers
+router.get("/lawyer/unverified", GetAllUnverfiedLawyer);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);

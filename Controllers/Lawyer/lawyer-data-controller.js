@@ -6,6 +6,7 @@ const {
   QueryDeleteUser,
   QueryUpdateLawyerDetails,
 } = require("../../Models/User/user-initial");
+const { QueryUnverfiedLawyer } = require("../../Models/Lawyers/lawyer-model");
 const { addTimestampToUpdate } = require("../User/UserSides/manipulate.update");
 const { currentTime } = require("../../Services/timestamp");
 
@@ -44,10 +45,22 @@ const GetAllLawyer = async (req, res) => {
   return res.json(targetUser);
 };
 
+// Get all unverified lawyers details
+const GetAllUnverfiedLawyer = async (req, res) => {
+  // get from database
+  const targetUser = await QueryUnverfiedLawyer("lawyers");
+  console.log(targetUser);
+  if (!targetUser) {
+    return res.status(404).send({ message: "Data not found" });
+  }
+  return res.json(targetUser);
+};
+
 // Update Details
 const UpdateLawyer = async (req, res) => {
   const id = req.params.id;
-  let data = req.body;
+  let data = req.body.update_data;
+  console.log("+++", data);
   // add last update using a sideeffect
   data = addTimestampToUpdate(data);
   //
@@ -55,15 +68,18 @@ const UpdateLawyer = async (req, res) => {
     $set: {
       name: data.name,
       state: data.state,
-      city: data.city, 
+      city: "data.city",
       rate: data.rate,
+      barID: data.bar,
+      id: data.id,
+      barYear: data.year,
       languages: data.languages,
       specialties: data.specialties,
+      rate: data.rate,
+      language: data.language,
       summary: data.summary,
-      contact: data.contact,
-      bar: data.bar,
-      id: data.id,
-      // add any other fields you want to update here
+      verified: data.verified,
+      // add any other fields to update here
     },
   };
   const updateResult = await QueryUpdateLawyerDetails(
@@ -88,4 +104,5 @@ module.exports = {
   UpdateLawyer,
   GetAllLawyer,
   DeleteLawyer,
+  GetAllUnverfiedLawyer,
 };

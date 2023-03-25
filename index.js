@@ -27,3 +27,8 @@ app.use("/api/reviews", reviewsRouter);
 app.get("/", (req, res) => {
   res.send({ message: "Working..." });
 });
+
+app.get("/check?q=node&page=2", (req, res) => {
+  // const result = checkConnection();
+  res.json(req.query);
+});
