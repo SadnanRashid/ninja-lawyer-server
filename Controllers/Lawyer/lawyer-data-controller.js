@@ -73,7 +73,6 @@ const UpdateLawyer = async (req, res) => {
       barID: data.bar,
       id: data.id,
       barYear: data.year,
-      languages: data.languages,
       specialties: data.specialties,
       rate: data.rate,
       languages: data.languages,
