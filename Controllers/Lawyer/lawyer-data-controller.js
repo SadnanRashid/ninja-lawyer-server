@@ -68,7 +68,7 @@ const UpdateLawyer = async (req, res) => {
     $set: {
       name: data.name,
       state: data.state,
-      city: "data.city",
+      city: data.city,
       rate: data.rate,
       barID: data.bar,
       id: data.id,
@@ -76,9 +76,10 @@ const UpdateLawyer = async (req, res) => {
       languages: data.languages,
       specialties: data.specialties,
       rate: data.rate,
-      language: data.language,
+      languages: data.languages,
       summary: data.summary,
       verified: data.verified,
+      contact: data.contact,
       // add any other fields to update here
     },
   };
@@ -87,6 +88,7 @@ const UpdateLawyer = async (req, res) => {
     updateFields,
     "lawyers"
   );
+  console.log(updateResult, "updateResult");
   // ** add logResult to a obj and send both
   res.json(updateResult);
 };
