@@ -23,7 +23,17 @@ const GetQueryLawyer = async (req, res) => {
 };
 
 // Get all lawyers details with specialties
-const GetQueryLawyerSpecialties = async (query) => {};
+const GetQueryLawyerSpecialties = async (req, res) => {
+  const data = req.params.query.split(",");
+  console.log(data);
+  const query = { specialties: { $in: data } };
+  const targetUser = await QuerySearchLaywer(query, "lawyers");
+  console.log(targetUser);
+  if (!targetUser) {
+    return res.status(404).send({ message: "data not found" });
+  }
+  return res.json(targetUser);
+};
 
 module.exports = {
   GetQueryLawyer,

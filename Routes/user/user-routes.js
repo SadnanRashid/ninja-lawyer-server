@@ -16,6 +16,7 @@ const {
 } = require("../../Controllers/Lawyer/lawyer-data-controller");
 const {
   GetQueryLawyer,
+  GetQueryLawyerSpecialties,
 } = require("../../Controllers/Lawyer/lawyer-search-controller");
 
 router.get("/test", () => {
@@ -45,6 +46,8 @@ router.put("/lawyer/update/:id", UpdateLawyer);
 router.get("/lawyer/unverified", GetAllUnverfiedLawyer);
 // Get queried lawyers
 router.get("/lawyer/search", GetQueryLawyer);
+// Get queried lawyers based on specialties
+router.get("/lawyer/search-specialties/:query", GetQueryLawyerSpecialties);
 
 // router.get("/all", GetAllContacts);
 // router.get("/get", validatePagenation, GetPaginateContacts);
