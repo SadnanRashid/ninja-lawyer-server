@@ -14,4 +14,22 @@ function titleCase(inputString) {
   return spacedString;
 }
 
-module.exports = { titleCase };
+function capitalizeAndReplace(arr) {
+  return arr.map((str) => {
+    // Replace underscores with spaces
+    const replacedStr = str.replace(/_/g, " ");
+
+    // Split the string into words
+    const words = replacedStr.split(" ");
+
+    // Capitalize the first letter of each word
+    const capitalizedWords = words.map((word) => {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    });
+
+    // Join the capitalized words back into a string
+    return capitalizedWords.join(" ");
+  });
+}
+
+module.exports = { titleCase, capitalizeAndReplace };

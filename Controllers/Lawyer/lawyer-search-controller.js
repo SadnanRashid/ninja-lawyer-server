@@ -1,6 +1,9 @@
 const { query } = require("express");
 const { QuerySearchLaywer } = require("../../Models/Lawyers/lawyer-model");
-const { titleCase } = require("../../Services/capitalize");
+const {
+  titleCase,
+  capitalizeAndReplace,
+} = require("../../Services/capitalize");
 
 // Get all lawyers details
 const GetQueryLawyer = async (req, res) => {
@@ -24,7 +27,8 @@ const GetQueryLawyer = async (req, res) => {
 
 // Get all lawyers details with specialties
 const GetQueryLawyerSpecialties = async (req, res) => {
-  const data = req.params.query.split(",");
+  let data = req.params.query.split(",");
+  data = capitalizeAndReplace(data);
   console.log(data);
   const query = { specialties: { $in: data } };
   const targetUser = await QuerySearchLaywer(query, "lawyers");

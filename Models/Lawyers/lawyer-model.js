@@ -16,14 +16,9 @@ const QueryUnverfiedLawyer = async (collection) => {
 const QuerySearchLaywer = async (query, collection) => {
   try {
     // const session = await client.startSession(); //remove **
-    const cursor = await getCollection(collection)
-      .find(query)
-      .toArray()
-      .then((items) => {
-        console.log(items);
-        return items;
-      }); // ,{ session }
-    // return cursor.toArray();
+    const cursor = await getCollection(collection).find(query).toArray();
+
+    return cursor;
   } catch (error) {
     console.log(error);
     return error;
