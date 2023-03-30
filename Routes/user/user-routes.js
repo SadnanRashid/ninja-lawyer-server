@@ -18,6 +18,9 @@ const {
   GetQueryLawyer,
   GetQueryLawyerSpecialties,
 } = require("../../Controllers/Lawyer/lawyer-search-controller");
+const {
+  GetLawyersPaginate,
+} = require("../../Controllers/Lawyer/lawyer-paginate-controller");
 
 router.get("/test", () => {
   console.log("Working test");
@@ -36,6 +39,8 @@ router.get("/get-logs/:id", GetRecords);
 router.post("/add-lawyer", PostLawyer);
 // Get all lawyers
 router.get("/get-lawyers/all", GetAllLawyer);
+// Get paginate lawyers
+router.get("/get-lawyers", GetLawyersPaginate);
 // Delete a lawyer
 router.delete("/lawyer/delete/:id", DeleteLawyer);
 // Get one lawyer details

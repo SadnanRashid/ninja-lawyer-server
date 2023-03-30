@@ -26,7 +26,22 @@ const QuerySearchLaywer = async (query, collection) => {
   }
 };
 
+// Lawyer pagination model:
+const QueryGetPaginate = async (collection, limit, skip) => {
+  try {
+    const query = {};
+    const cursor = getCollection(collection)
+      .find(query)
+      .skip(skip)
+      .limit(limit);
+    return cursor.toArray();
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   QueryUnverfiedLawyer,
   QuerySearchLaywer,
+  QueryGetPaginate,
 };
