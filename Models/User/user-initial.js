@@ -14,7 +14,8 @@ const QueryAddUser = async (data, collection) => {
 // Function to call database get specific user details
 const QueryGetUser = async (UID, collection) => {
   try {
-    const query = { UID: UID };
+    // const query = { UID: UID };
+    const query = { $or: [{ uid: UID }, { UID: UID }] };
     const cursor = await getCollection(collection).findOne(query);
     return cursor;
   } catch (error) {

@@ -5,6 +5,7 @@ const { ObjectId } = require("mongodb");
 const QueryUnverfiedLawyer = async (collection) => {
   try {
     const query = { verified: false };
+    // const query = { verified: { $exists: false } };
     const cursor = getCollection(collection).find(query);
     return cursor.toArray();
   } catch (error) {
