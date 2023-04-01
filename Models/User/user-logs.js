@@ -29,11 +29,11 @@ const QueryAddRecord = async (UID, action, timestamp) => {
 };
 
 // Function to call database get all logs of user's records
-const QueryGetRecords = async (id) => {
+const QueryGetRecords = async (UID) => {
   try {
-    const query = { userID: id }; //new ObjectId(id)
-    const cursor = getCollection("users_log").find(query);
-    const records = await cursor.toArray();
+    const query = { UID: UID }; //new ObjectId(id)
+    const cursor = getCollection("users_log").findOne(query);
+    const records = await cursor;
     return records;
   } catch (error) {
     return error;
