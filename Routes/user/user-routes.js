@@ -38,7 +38,7 @@ router.put("/update/:id", UpdateUser);
 // LOGS
 // Get user logs from database
 router.get("/logs/get/:id", GetRecords);
-router.get("/logs/post/:query", PostRecord);
+router.get("/logs/post", PostRecord);
 
 //
 // Lawyer routes

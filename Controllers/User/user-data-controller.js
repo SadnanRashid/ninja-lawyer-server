@@ -43,7 +43,7 @@ const UpdateUser = async (req, res) => {
   data = addTimestampToUpdate(req.body.update_data);
   console.log(data);
   const updateResult = await QueryUpdateUserDetails(id, data, "users");
-  const logResult = await PostRecord({ UID: id, action: "profile_update" });
+  // const logResult = await PostRecord({ UID: id, action: "profile_update" });
   // ** add logResult to a obj and send both
   res.json(updateResult);
 };
