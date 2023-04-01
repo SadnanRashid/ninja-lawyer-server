@@ -5,7 +5,10 @@ const {
   GetUser,
   UpdateUser,
 } = require("../../Controllers/User/user-data-controller");
-const { GetRecords } = require("../../Controllers/User/user-log-controller");
+const {
+  GetRecords,
+  PostRecord,
+} = require("../../Controllers/User/user-log-controller");
 const {
   PostLawyer,
   GetLawyer,
@@ -31,8 +34,11 @@ router.post("/add", PostUser);
 router.get("/get/:id", GetUser);
 // Update user data from database
 router.put("/update/:id", UpdateUser);
+
+// LOGS
 // Get user logs from database
-router.get("/get-logs/:id", GetRecords);
+router.get("/logs/get/:id", GetRecords);
+router.get("/logs/post/:query", PostRecord);
 
 //
 // Lawyer routes

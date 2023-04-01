@@ -14,13 +14,15 @@ const { currentTime } = require("../../Services/timestamp");
 //   const postResult = await QueryAddRecord(data);
 //   return res.json(postResult);
 // };
-const PostRecord = async (data) => {
+const PostRecord = async (req, res) => {
+  const UID = req.query.id;
+  const action = req.query.action;
   // Get current server time
   const timeStamp = currentTime();
   //   add time to post data
-  data.timestamp = timeStamp;
+  // data.timestamp = timeStamp;
   //   Get results from database
-  const postResult = await QueryAddRecord(data);
+  const postResult = await QueryAddRecord(UID, action, timeStamp);
   console.log(postResult);
   return postResult;
 };
