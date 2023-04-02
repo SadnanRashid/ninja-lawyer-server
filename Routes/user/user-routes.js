@@ -73,13 +73,5 @@ router.get("/lawyer/search", GetQueryLawyer);
 // Get queried lawyers based on specialties
 router.get("/lawyer/search-specialties/:query", GetQueryLawyerSpecialties);
 
-// router.get("/all", GetAllContacts);
-// router.get("/get", validatePagenation, GetPaginateContacts);
-// router.get("/getmatch/:phase", validateParamOfPhase, GetMatchingContact);
-// router.get("/:id", validateID, GetTargetContact);
-// router.post("/add", verifyJWT, validatePost, PostOneContact);
-// router.post("/addmany", verifyJWT, PostManyContact);
-// router.put("/update/:id", verifyJWT, validateID, UpdateContact);
-// router.delete("/delete/:id", verifyJWT, validateID, DeleteContact);
 // return router
 module.exports = router;

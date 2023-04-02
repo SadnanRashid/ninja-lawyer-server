@@ -23,6 +23,9 @@ app.use("/api/users", userRouter);
 // Get reviews router
 const reviewsRouter = require("./Routes/reviews/reviews-routes");
 app.use("/api/reviews", reviewsRouter);
+// Get admin routes
+const adminRouter = require("./Routes/admin/admin-routes");
+app.use("/api/admin", adminRouter);
 
 app.get("/", (req, res) => {
   res.send({ message: "Working..." });
