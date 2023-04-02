@@ -2,11 +2,11 @@ const { getCollection } = require("../database");
 const { ObjectId } = require("mongodb");
 
 // Fucntion to post a log in database
-const QueryAddRecord = async (UID, action, timestamp) => {
+const QueryAddRecordLawyer = async (UID, action, timestamp) => {
   try {
     let updateObj = { $push: {} };
     updateObj.$push[action] = { action, timestamp };
-    const result = await getCollection("users_log").updateOne(
+    const result = await getCollection("lawyers_log").updateOne(
       { UID: UID },
       updateObj,
       { upsert: true }
@@ -22,10 +22,10 @@ const QueryAddRecord = async (UID, action, timestamp) => {
 };
 
 // Function to call database get all logs of user's records
-const QueryGetRecords = async (UID) => {
+const QueryGetRecordsLawyer = async (UID) => {
   try {
     const query = { UID: UID }; //new ObjectId(id)
-    const cursor = getCollection("users_log").findOne(query);
+    const cursor = getCollection("lawyers_log").findOne(query);
     const records = await cursor;
     return records;
   } catch (error) {
@@ -33,4 +33,4 @@ const QueryGetRecords = async (UID) => {
   }
 };
 
-module.exports = { QueryAddRecord, QueryGetRecords };
+module.exports = { QueryAddRecordLawyer, QueryGetRecordsLawyer };

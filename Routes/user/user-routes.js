@@ -26,6 +26,13 @@ const {
   GetLawyersPaginate,
 } = require("../../Controllers/Lawyer/lawyer-paginate-controller");
 
+const {
+  PostRecordLawyer,
+  GetRecordsLawyer,
+} = require("../../Controllers/Lawyer/lawyer-log.controller");
+//
+//
+
 router.get("/test", () => {
   console.log("Working test");
 });
@@ -40,6 +47,9 @@ router.put("/update/:id", UpdateUser);
 // Get user logs from database
 router.get("/logs/get/:id", GetRecords);
 router.post("/logs/post", PostRecord);
+// Lawyers logs
+router.get("/logs/lawyer/get/:id", GetRecordsLawyer);
+router.post("/logs/lawyer/post", PostRecordLawyer);
 
 //
 // Lawyer routes
