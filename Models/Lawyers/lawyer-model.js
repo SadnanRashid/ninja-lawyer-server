@@ -13,6 +13,8 @@ const QueryUnverfiedLawyer = async (collection) => {
   }
 };
 
+// Function to verify a laweyer
+
 // Function to call database get specific user details
 const QuerySearchLaywer = async (query, collection) => {
   try {

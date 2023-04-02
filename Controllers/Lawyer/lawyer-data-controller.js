@@ -60,6 +60,19 @@ const GetAllUnverfiedLawyer = async (req, res) => {
   return res.json(targetUser);
 };
 
+//Lawyer verify
+const VerifyLawyer = async (req, res) => {
+  const id = req.params.id;
+  const data = { verified: true };
+  const updateFields = { $set: data };
+  const updateResult = await QueryUpdateLawyerDetails(
+    id,
+    updateFields,
+    "lawyers"
+  );
+  res.json(updateResult);
+};
+
 // Update Details
 const UpdateLawyer = async (req, res) => {
   const id = req.params.id;
@@ -110,4 +123,5 @@ module.exports = {
   GetAllLawyer,
   DeleteLawyer,
   GetAllUnverfiedLawyer,
+  VerifyLawyer,
 };
