@@ -1,11 +1,7 @@
-const { QueryGetPaginate } = require("../../Models/Lawyers/lawyer-model");
-
-//   Get paginate of lawyers
 const GetLawyersPaginate = async (req, res) => {
   const page = req.query.page || 1; // default to first page
   const limit = parseInt(req.query.limit) || 10; // default limit to 10 documents per page
   const skip = (page - 1) * limit;
-
   console.log(page, limit, skip);
 
   try {
@@ -19,6 +15,16 @@ const GetLawyersPaginate = async (req, res) => {
   }
 };
 
-module.exports = {
-  GetLawyersPaginate,
+// Lawyer pagination model:
+const QueryGetPaginate = async (collection, limit, skip) => {
+  try {
+    const query = {};
+    const cursor = getCollection(collection)
+      .find(query)
+      .skip(skip)
+      .limit(limit);
+    return cursor.toArray();
+  } catch (error) {
+    return error;
+  }
 };
