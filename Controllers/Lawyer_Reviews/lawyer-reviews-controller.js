@@ -3,6 +3,7 @@ const { currentTime } = require("../../Services/timestamp");
 const {
   QueryGetReviews,
   QueryAddReview,
+  QueryFetchUsers,
 } = require("../../Models/Reviews/review-queries");
 
 const PostReview = async (req, res) => {
@@ -28,4 +29,12 @@ const GetReviews = async (req, res) => {
   return res.json(reviewsRef);
 };
 
-module.exports = { PostReview, GetReviews };
+// Get all user detials
+const FetchUsers = async (req, res) => {
+  const query = req.query.ids;
+  const uids = query.split(",");
+  const result = await QueryFetchUsers(uids);
+  res.json(result);
+};
+
+module.exports = { PostReview, GetReviews, FetchUsers };

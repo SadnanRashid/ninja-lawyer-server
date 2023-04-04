@@ -3,6 +3,7 @@ const router = express.Router();
 const {
   PostReview,
   GetReviews,
+  FetchUsers,
 } = require("../../Controllers/Lawyer_Reviews/lawyer-reviews-controller");
 
 router.get("/test", () => {
@@ -12,6 +13,8 @@ router.get("/test", () => {
 router.post("/add/:id", PostReview);
 // Get all reviews data to database
 router.get("/get/:id", GetReviews);
+// Get user details based on uids
+router.get("/users/get", FetchUsers);
 
 // return router
 module.exports = router;

@@ -12,6 +12,17 @@ const QueryGetReviews = async (lawyerUID, collection) => {
   }
 };
 
+// Function to call user details based on a review
+const QueryFetchUsers = async (uids) => {
+  try {
+    const query = { UID: { $in: uids } };
+    const result = await getCollection("users").find(query).toArray();
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
 const QueryAddReview = async (lawyerID, review, collection) => {
   try {
     const query = { lawyerUID: lawyerID };
@@ -44,6 +55,7 @@ const QueryAddReview = async (lawyerID, review, collection) => {
 module.exports = {
   QueryGetReviews,
   QueryAddReview,
+  QueryFetchUsers,
 };
 
 // {UID: "asfiu3ruiwjci",
