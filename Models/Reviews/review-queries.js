@@ -15,6 +15,15 @@ const QueryGetReviews = async (lawyerUID, collection) => {
 const QueryAddReview = async (lawyerID, review, collection) => {
   try {
     const query = { lawyerUID: lawyerID };
+    const initSearch = await getCollection(collection).findOne({
+      lawyerUID: lawyerID,
+    });
+    console.log(initSearch);
+    if (!initSearch) {
+      const createDoc = await getCollection(collection).insertOne({
+        lawyerUID: lawyerID,
+      });
+    }
     const result = await getCollection(collection).updateOne(
       query,
       { $push: { reviews: review } },
@@ -23,11 +32,9 @@ const QueryAddReview = async (lawyerID, review, collection) => {
           console.error(err);
           return err;
         }
-        console.log(`Added review to lawyer ${lawyerId}: ${review}`);
+        console.log(`Added review to lawyer ${lawyerID}: ${review}`);
       }
     );
-    // const result = await getCollection(collection).insertOne(data);
-    // console.log(`A document was inserted with the _id: ${result.insertedId}`);
     return result;
   } catch (error) {
     return error;
