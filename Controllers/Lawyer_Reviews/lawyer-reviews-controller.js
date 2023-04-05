@@ -20,8 +20,17 @@ const PostReview = async (req, res) => {
 
 // Get user details function
 const GetReviews = async (req, res) => {
+  const lawyerID = req.query.id;
+  const page = req.query.page || 1; // default to first page
+  const limit = parseInt(req.query.limit) || 10; // default limit to 10 documents per page
+  const skip = (page - 1) * limit;
   // get from database
-  const reviewsRef = await QueryGetReviews(req.params.id, "lawyer_reviews");
+  const reviewsRef = await QueryGetReviews(
+    lawyerID,
+    "lawyer_reviews",
+    limit,
+    skip
+  );
   console.log(reviewsRef);
   if (!reviewsRef) {
     return res.status(404).send({ message: "data not found" });

@@ -12,7 +12,7 @@ router.get("/test", () => {
 // Post new review data to database
 router.post("/add/:id", PostReview);
 // Get all reviews data to database
-router.get("/get/:id", GetReviews);
+router.get("/get", GetReviews);
 // Get user details based on uids
 router.get("/users/get", FetchUsers);
 
