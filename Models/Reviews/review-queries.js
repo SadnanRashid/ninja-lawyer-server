@@ -1,5 +1,8 @@
 const { getCollection } = require("../database");
 const { ObjectId } = require("mongodb");
+const {
+  filterReviewsRatings,
+} = require("../../Services/Reviews/reviews-filter");
 
 // Function to call database get specific user details
 const QueryGetReviews = async (lawyerUID, collection, limit, skip) => {
@@ -7,6 +10,34 @@ const QueryGetReviews = async (lawyerUID, collection, limit, skip) => {
     const query = { lawyerUID: lawyerUID };
     const cursor = await getCollection(collection).findOne(query);
     const results = cursor.reviews;
+    let arrayOfReviews = [];
+    if (results.length > skip) {
+      for (let i = skip; i < limit + skip; i++) {
+        if (results[i]) {
+          arrayOfReviews.push(results[i]);
+        }
+      }
+      return arrayOfReviews;
+    }
+    return false;
+  } catch (error) {
+    return error;
+  }
+};
+
+// Function to call database get specific user review based on rating search
+const QueryRatingReviews = async (
+  lawyerUID,
+  ratings,
+  collection,
+  limit,
+  skip
+) => {
+  try {
+    const query = { lawyerUID: lawyerUID };
+    const cursor = await getCollection(collection).findOne(query);
+    let results = cursor.reviews;
+    results = filterReviewsRatings(results, parseInt(ratings));
     let arrayOfReviews = [];
     if (results.length > skip) {
       for (let i = skip; i < limit + skip; i++) {
@@ -66,6 +97,7 @@ module.exports = {
   QueryGetReviews,
   QueryAddReview,
   QueryFetchUsers,
+  QueryRatingReviews,
 };
 
 // {UID: "asfiu3ruiwjci",

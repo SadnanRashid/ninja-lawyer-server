@@ -4,6 +4,7 @@ const {
   PostReview,
   GetReviews,
   FetchUsers,
+  GetReviewsOnRating,
 } = require("../../Controllers/Lawyer_Reviews/lawyer-reviews-controller");
 
 router.get("/test", () => {
@@ -15,6 +16,8 @@ router.post("/add/:id", PostReview);
 router.get("/get", GetReviews);
 // Get user details based on uids
 router.get("/users/get", FetchUsers);
+// Get all reviews data based on rating
+router.get("/search", GetReviewsOnRating);
 
 // return router
 module.exports = router;

@@ -4,6 +4,7 @@ const {
   QueryGetReviews,
   QueryAddReview,
   QueryFetchUsers,
+  QueryRatingReviews,
 } = require("../../Models/Reviews/review-queries");
 
 const PostReview = async (req, res) => {
@@ -28,10 +29,29 @@ const GetReviews = async (req, res) => {
   const reviewsRef = await QueryGetReviews(
     lawyerID,
     "lawyer_reviews",
-    limit,
-    skip
+    parseInt(limit),
+    parseInt(skip)
   );
   console.log(reviewsRef);
+  if (!reviewsRef) {
+    return res.status(404).send({ message: "data not found" });
+  }
+  return res.json(reviewsRef);
+};
+
+// Get review details based on ratings
+const GetReviewsOnRating = async (req, res) => {
+  const lawyerID = req.query.id;
+  const { ratings, limit, page } = req.query;
+  const skip = (page - 1) * limit;
+  // get from database
+  const reviewsRef = await QueryRatingReviews(
+    lawyerID,
+    ratings,
+    "lawyer_reviews",
+    parseInt(limit),
+    parseInt(skip)
+  );
   if (!reviewsRef) {
     return res.status(404).send({ message: "data not found" });
   }
@@ -46,4 +66,4 @@ const FetchUsers = async (req, res) => {
   res.json(result);
 };
 
-module.exports = { PostReview, GetReviews, FetchUsers };
+module.exports = { PostReview, GetReviews, FetchUsers, GetReviewsOnRating };
