@@ -6,6 +6,7 @@ const {
   QueryFetchUsers,
   QueryRatingReviews,
 } = require("../../Models/Reviews/review-queries");
+const { filterReviewOnTime } = require("../../Services/Reviews/reviews-filter");
 
 const PostReview = async (req, res) => {
   const lawyerID = req.params.id;
@@ -32,11 +33,11 @@ const GetReviews = async (req, res) => {
     parseInt(limit),
     parseInt(skip)
   );
-  console.log(reviewsRef);
   if (!reviewsRef) {
     return res.status(404).send({ message: "data not found" });
   }
-  return res.json(reviewsRef);
+  const returnArray = filterReviewOnTime(reviewsRef);
+  return res.json(returnArray);
 };
 
 // Get review details based on ratings
@@ -55,7 +56,8 @@ const GetReviewsOnRating = async (req, res) => {
   if (!reviewsRef) {
     return res.status(404).send({ message: "data not found" });
   }
-  return res.json(reviewsRef);
+  const returnArray = filterReviewOnTime(reviewsRef);
+  return res.json(returnArray);
 };
 
 // Get all user detials
