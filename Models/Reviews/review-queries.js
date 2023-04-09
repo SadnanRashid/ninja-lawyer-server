@@ -1,5 +1,4 @@
 const { getCollection } = require("../database");
-const { ObjectId } = require("mongodb");
 const {
   filterReviewsRatings,
 } = require("../../Services/Reviews/reviews-filter");
