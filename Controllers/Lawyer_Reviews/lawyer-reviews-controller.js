@@ -5,6 +5,7 @@ const {
   QueryAddReview,
   QueryFetchUsers,
   QueryRatingReviews,
+  QueryGetAllReviews,
 } = require("../../Models/Reviews/review-queries");
 const { filterReviewOnTime } = require("../../Services/Reviews/reviews-filter");
 
@@ -18,6 +19,17 @@ const PostReview = async (req, res) => {
   //Get results from database
   const postResult = await QueryAddReview(lawyerID, data, "lawyer_reviews");
   return res.json(postResult);
+};
+
+// Get all reviews:
+const GetAllReviews = async (req, res) => {
+  try {
+    const lawyerUID = req.params.id;
+    const reviews = await QueryGetAllReviews(lawyerUID, "lawyer_reviews");
+    res.json(reviews);
+  } catch (error) {
+    res.send(error);
+  }
 };
 
 // Get user details function
@@ -68,4 +80,10 @@ const FetchUsers = async (req, res) => {
   res.json(result);
 };
 
-module.exports = { PostReview, GetReviews, FetchUsers, GetReviewsOnRating };
+module.exports = {
+  PostReview,
+  GetReviews,
+  FetchUsers,
+  GetReviewsOnRating,
+  GetAllReviews,
+};

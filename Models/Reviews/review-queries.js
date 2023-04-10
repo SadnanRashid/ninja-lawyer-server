@@ -3,6 +3,17 @@ const {
   filterReviewsRatings,
 } = require("../../Services/Reviews/reviews-filter");
 
+// Get all reviews of a lawyer
+const QueryGetAllReviews = async (lawyerUID, collection) => {
+  try {
+    const query = { lawyerUID: lawyerUID };
+    const result = getCollection(collection).findOne(query);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
 // Function to call database get specific user details
 const QueryGetReviews = async (lawyerUID, collection, limit, skip) => {
   try {
@@ -97,6 +108,7 @@ module.exports = {
   QueryAddReview,
   QueryFetchUsers,
   QueryRatingReviews,
+  QueryGetAllReviews,
 };
 
 // {UID: "asfiu3ruiwjci",
