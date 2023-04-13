@@ -73,6 +73,9 @@ const VerifyLawyer = async (req, res) => {
   res.json(updateResult);
 };
 
+// Laywer reject
+const RejectLawyer = async (req, res) => {};
+
 // Update Details
 const UpdateLawyer = async (req, res) => {
   const id = req.params.id;
