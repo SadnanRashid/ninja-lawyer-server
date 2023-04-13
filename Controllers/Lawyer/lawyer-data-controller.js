@@ -74,7 +74,14 @@ const VerifyLawyer = async (req, res) => {
 };
 
 // Laywer reject
-const RejectLawyer = async (req, res) => {};
+const RejectLawyer = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const updateData = { $set: { verfied: "rejected" } };
+  } catch (error) {
+    res.send(error);
+  }
+};
 
 // Update Details
 const UpdateLawyer = async (req, res) => {
