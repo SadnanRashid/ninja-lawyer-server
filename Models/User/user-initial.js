@@ -52,14 +52,13 @@ const QueryUpdateUserDetails = async (UID, updateData, collection) => {
 };
 // // Update an element
 const QueryUpdateLawyerDetails = async (UID, updateData, collection) => {
-  console.log("------");
   try {
     const filter = { UID: UID };
     const result = await getCollection(collection).updateOne(
       filter,
       updateData
     );
-    console.log(result, "------");
+    // console.log(result, "------");
     return result;
   } catch (error) {
     console.log(error);
