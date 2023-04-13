@@ -137,4 +137,5 @@ module.exports = {
   DeleteLawyer,
   GetAllUnverfiedLawyer,
   VerifyLawyer,
+  RejectLawyer,
 };
