@@ -78,7 +78,7 @@ const RejectLawyer = async (req, res) => {
   try {
     const id = req.params.id;
     const updateData = { $set: { verfied: "rejected" } };
-    const result = {};
+    const result = QueryUpdateLawyerDetails(id, updateData);
   } catch (error) {
     res.send(error);
   }
