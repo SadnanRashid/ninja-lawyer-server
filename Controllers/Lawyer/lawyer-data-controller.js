@@ -76,6 +76,7 @@ const VerifyLawyer = async (req, res) => {
 // Laywer reject
 const RejectLawyer = async (req, res) => {
   try {
+    // get id
     const id = req.params.id;
     const updateData = { $set: { verified: "rejected" } };
     // reject lawyer
