@@ -80,6 +80,7 @@ const RejectLawyer = async (req, res) => {
     const updateData = { $set: { verfied: "rejected" } };
     // reject lawyer
     const result = await QueryUpdateLawyerDetails(id, updateData, "lawyers");
+    res.json(result);
   } catch (error) {
     res.send(error);
   }
