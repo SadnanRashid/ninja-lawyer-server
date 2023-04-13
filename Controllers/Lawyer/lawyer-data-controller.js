@@ -77,7 +77,7 @@ const VerifyLawyer = async (req, res) => {
 const RejectLawyer = async (req, res) => {
   try {
     const id = req.params.id;
-    const updateData = { $set: { verfied: "rejected" } };
+    const updateData = { $set: { verified: "rejected" } };
     // reject lawyer
     const result = await QueryUpdateLawyerDetails(id, updateData, "lawyers");
     res.json(result);
