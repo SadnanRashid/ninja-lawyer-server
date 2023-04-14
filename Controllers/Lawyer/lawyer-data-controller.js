@@ -119,7 +119,6 @@ const UpdateLawyer = async (req, res) => {
     "lawyers"
   );
   console.log(updateResult, "updateResult");
-  // ** add logResult to a obj and send both
   res.json(updateResult);
 };
 
