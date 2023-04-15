@@ -50,7 +50,7 @@ const GetAllLawyer = async (req, res) => {
 // Get all unverified lawyers details
 const GetAllUnverfiedLawyer = async (req, res) => {
   // get from database
-  const targetUser = await QueryUnverfiedLawyer("lawyers");
+  const targetUser = await QueryUnverfiedLawyer("lawyers", false);
   if (!targetUser) {
     return res.status(404).send({ message: "Data not found" });
   }
@@ -60,7 +60,17 @@ const GetAllUnverfiedLawyer = async (req, res) => {
 // Get all verified lawyers details
 const GetAllVerfiedLawyer = async (req, res) => {
   // get from database
-  const targetUser = await QueryUnverfiedLawyer("lawyers");
+  const targetUser = await QueryUnverfiedLawyer("lawyers", true);
+  if (!targetUser) {
+    return res.status(404).send({ message: "Data not found" });
+  }
+  return res.json(targetUser);
+};
+
+// Get all rejected lawyers details
+const GetAllRejectedLawyer = async (req, res) => {
+  // get from database
+  const targetUser = await QueryUnverfiedLawyer("lawyers", "rejected");
   if (!targetUser) {
     return res.status(404).send({ message: "Data not found" });
   }
@@ -142,4 +152,6 @@ module.exports = {
   GetAllUnverfiedLawyer,
   VerifyLawyer,
   RejectLawyer,
+  GetAllRejectedLawyer,
+  GetAllVerfiedLawyer,
 };
