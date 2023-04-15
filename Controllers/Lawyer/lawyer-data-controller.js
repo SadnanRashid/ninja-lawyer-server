@@ -53,7 +53,6 @@ const GetAllLawyer = async (req, res) => {
 const GetAllUnverfiedLawyer = async (req, res) => {
   // get from database
   const targetUser = await QueryUnverfiedLawyer("lawyers");
-  console.log(targetUser);
   if (!targetUser) {
     return res.status(404).send({ message: "Data not found" });
   }
