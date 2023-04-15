@@ -36,14 +36,12 @@ const QueryGetAll = async (collection) => {
 
 // Update an element
 const QueryUpdateUserDetails = async (UID, updateData, collection) => {
-  console.log("------");
   try {
     const filter = { UID: UID };
     const result = await getCollection(collection).replaceOne(
       filter,
       updateData
     );
-    console.log(result, "------");
     return result;
   } catch (error) {
     console.log(error);
@@ -58,7 +56,6 @@ const QueryUpdateLawyerDetails = async (UID, updateData, collection) => {
       filter,
       updateData
     );
-    // console.log(result, "------");
     return result;
   } catch (error) {
     console.log(error);
