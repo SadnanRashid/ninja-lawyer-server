@@ -2,9 +2,9 @@ const { getCollection } = require("../database");
 const { ObjectId } = require("mongodb");
 
 // Function to call database get specific user details
-const QueryUnverfiedLawyer = async (collection) => {
+const QueryUnverfiedLawyer = async (collection, status) => {
   try {
-    const query = { verified: false };
+    const query = { verified: status };
     // const query = { verified: { $exists: false } };
     const cursor = getCollection(collection).find(query);
     return cursor.toArray();
