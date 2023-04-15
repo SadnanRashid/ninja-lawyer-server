@@ -13,7 +13,7 @@ const QueryUnverfiedLawyer = async (collection) => {
   }
 };
 
-// Function to call database get specific lawyer details
+// Function to call database get specific lawyer details based on verification status
 const QueryLawyerVerificationStatus = async (collection) => {
   try {
     const query = { verified: false };
