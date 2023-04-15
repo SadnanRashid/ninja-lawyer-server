@@ -118,7 +118,6 @@ const UpdateLawyer = async (req, res) => {
     updateFields,
     "lawyers"
   );
-  console.log(updateResult, "updateResult");
   res.json(updateResult);
 };
 
