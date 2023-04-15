@@ -17,7 +17,6 @@ const { titleCase } = require("../../Services/capitalize");
 const PostLawyer = async (req, res) => {
   const data = req.body;
   console.log("data", data.UID);
-  //   const checkExist = await QueryGetUser(data.UID);
   //Get current server time
   const timeStamp = currentTime();
   //add time to post data
@@ -42,7 +41,6 @@ const GetLawyer = async (req, res) => {
 const GetAllLawyer = async (req, res) => {
   // get from database
   const targetUser = await QueryGetAll("lawyers");
-  console.log("targetUser");
   if (!targetUser) {
     return res.status(404).send({ message: "data not found" });
   }
