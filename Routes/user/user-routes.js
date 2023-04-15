@@ -18,6 +18,8 @@ const {
   GetAllUnverfiedLawyer,
   VerifyLawyer,
   RejectLawyer,
+  GetAllRejectedLawyer,
+  GetAllVerfiedLawyer,
 } = require("../../Controllers/Lawyer/lawyer-data-controller");
 const {
   GetQueryLawyer,
@@ -67,6 +69,10 @@ router.get("/get-lawyer/:id", GetLawyer);
 router.put("/lawyer/update/:id", UpdateLawyer);
 // Get all unverified lawyers
 router.get("/lawyer/unverified", GetAllUnverfiedLawyer);
+// Get all verified lawyers
+router.get("/lawyer/verified", GetAllVerfiedLawyer);
+// Get all rejected lawyers
+router.get("/lawyer/rejected", GetAllRejectedLawyer);
 // Verify a lawyer
 router.put("/lawyer/verify/:id", VerifyLawyer);
 // reject a lawyer
