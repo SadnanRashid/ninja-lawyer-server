@@ -57,6 +57,16 @@ const GetAllUnverfiedLawyer = async (req, res) => {
   return res.json(targetUser);
 };
 
+// Get all verified lawyers details
+const GetAllVerfiedLawyer = async (req, res) => {
+  // get from database
+  const targetUser = await QueryUnverfiedLawyer("lawyers");
+  if (!targetUser) {
+    return res.status(404).send({ message: "Data not found" });
+  }
+  return res.json(targetUser);
+};
+
 //Lawyer verify
 const VerifyLawyer = async (req, res) => {
   const id = req.params.id;
