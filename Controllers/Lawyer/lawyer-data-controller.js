@@ -76,7 +76,6 @@ const VerifyLawyer = async (req, res) => {
 // Laywer reject
 const RejectLawyer = async (req, res) => {
   try {
-    // get id
     const id = req.params.id;
     const updateData = { $set: { verified: "rejected" } };
     // reject lawyer
@@ -91,7 +90,6 @@ const RejectLawyer = async (req, res) => {
 const UpdateLawyer = async (req, res) => {
   const id = req.params.id;
   let data = req.body.update_data;
-  console.log("+++", data);
   // add last update using a sideeffect
   data = addTimestampToUpdate(data);
   //
