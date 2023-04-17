@@ -4,7 +4,7 @@ const { PostOrder } = require("../../Controllers/Orders/orders-controller");
 
 //
 // Order routes
-router.post("/add-lawyer", PostLawyer);
+router.post("/orders/add/:id", PostLawyer);
 
 // return router
 module.exports = router;
