@@ -1,5 +1,20 @@
-const { QueryPostOrder } = require("../../Models/Orders/orders-model");
+const {
+  QueryPostOrder,
+  QueryGetOrders,
+} = require("../../Models/Orders/orders-model");
 const { currentTime } = require("../../Services/timestamp");
+
+// Controller to get an lawyer orders from DB
+const GetOrders = async (req, res) => {
+  try {
+    const lawyerID = req.params.id;
+    //
+    const result = await QueryGetOrders(lawyerID, "orders");
+    res.json(result);
+  } catch (error) {
+    res.send(error);
+  }
+};
 
 // Controller to post an order to DB
 const PostOrder = async (req, res) => {
@@ -19,4 +34,4 @@ const PostOrder = async (req, res) => {
   }
 };
 
-module.exports = { PostOrder };
+module.exports = { PostOrder, GetOrders };

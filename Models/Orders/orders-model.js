@@ -1,6 +1,17 @@
 const { getCollection } = require("../database");
 
-// Function to call database get specific user details
+// Get a lawyers all orders
+const QueryGetOrders = async (lawyerID, collection) => {
+  try {
+    const query = { lawyerUID: lawyerID };
+    const result = getCollection(collection).findOne(query);
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
+// Post an order with status pending
 const QueryPostOrder = async (lawyerID, data, collection) => {
   try {
     const query = { lawyerUID: lawyerID };
@@ -28,4 +39,4 @@ const QueryPostOrder = async (lawyerID, data, collection) => {
   }
 };
 
-module.exports = { QueryPostOrder };
+module.exports = { QueryPostOrder, QueryGetOrders };
