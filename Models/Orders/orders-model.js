@@ -1,12 +1,12 @@
 const { getCollection } = require("../database");
 
 // Function to call database get specific user details
-const QueryPostOrder = async (collection, status) => {
+const QueryPostOrder = async (lawyerID, data, collection) => {
   try {
-    const query = { verified: status };
-    // const query = { verified: { $exists: false } };
-    const cursor = getCollection(collection).find(query);
-    return cursor.toArray();
+    const query = { lawyerUID: lawyerID };
+    const cursor = getCollection(collection).updateOne(query, {
+      $push: { orders: data },
+    });
   } catch (error) {
     return error;
   }
