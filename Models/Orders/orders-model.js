@@ -7,6 +7,7 @@ const QueryPostOrder = async (lawyerID, data, collection) => {
     const cursor = getCollection(collection).updateOne(query, {
       $push: { orders: data },
     });
+    return cursor;
   } catch (error) {
     return error;
   }
