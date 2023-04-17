@@ -6,7 +6,9 @@ const PostOrder = async (req, res) => {
     const lawyerID = req.params.id;
     const data = req.body;
 
-    const result = await QueryPostOrder(lawyerID, data);
+    console.log(lawyerID, data);
+
+    const result = await QueryPostOrder(lawyerID, data, "orders");
     res.json(result);
   } catch (error) {
     res.send(error);
