@@ -54,4 +54,4 @@ const PostOffer = async (req, res) => {
   }
 };
 
-module.exports = { PostOrder, GetOrders };
+module.exports = { GetSpecificOffer, GetOffer, PostOffer };
