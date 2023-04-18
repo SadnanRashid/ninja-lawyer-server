@@ -29,6 +29,9 @@ app.use("/api/admin", adminRouter);
 // Get order routes
 const orderRouter = require("./Routes/orders/orders-router");
 app.use("/api/orders/", orderRouter);
+// Get offer routes
+const offerRouter = require("./Routes/orders/offer-router");
+app.use("/api/offers/", offerRouter);
 
 app.get("/", (req, res) => {
   res.send({ message: "Working..." });
