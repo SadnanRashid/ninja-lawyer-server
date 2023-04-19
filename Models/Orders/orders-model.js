@@ -1,5 +1,6 @@
 const { ObjectId } = require("mongodb");
 const { getCollection } = require("../database");
+const { filterArray } = require("../../Services/Offers/filterOffer");
 
 // Get a lawyers all orders
 const QueryGetOrders = async (lawyerID, collection) => {
@@ -17,21 +18,13 @@ const QueryOrderWithID = async (id, collection) => {
   try {
     const ID = new ObjectId(id);
     console.log(ID);
-    const result = await getCollection(collection).aggregate([
-      {
-        $project: {
-          matchedOrders: {
-            $filter: {
-              input: "$orders",
-              as: "order",
-              cond: { $eq: ["$$order._id", ID] },
-            },
-          },
-        },
-      },
-    ]);
+    const result = await getCollection(collection).find({
+      orders: { $elemMatch: { _id: ID } },
+    });
+
     const temp = await result.toArray();
-    return temp[0].matchedOrders[0];
+    const filterResult = filterArray(temp[0].orders, id);
+    return filterResult;
   } catch (error) {
     return error;
   }
