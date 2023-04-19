@@ -10,6 +10,19 @@ const QuerySpecificOffer = async (lawyerID, userID, collection) => {
   } catch (error) {}
 };
 
+// Get users offers:
+const QueryUserOffers = async (userID, collection) => {
+  try {
+    const result = await getCollection.findMany(
+      { orders: { $elemMatch: { UID: userID } } },
+      { orders: 1 }
+    );
+    return result;
+  } catch (error) {
+    return error;
+  }
+};
+
 // Post an order with status pending
 const QueryPostOffer = async (lawyerID, data, collection) => {
   try {
