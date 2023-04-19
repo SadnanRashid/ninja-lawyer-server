@@ -46,7 +46,7 @@ const QueryChangeStatus = async (
 ) => {
   const getDoc = await getCollection(collection).findOne({
     lawyerUID: lawyerUID,
-    "offers._id": new ObjectId(offerID),
+    "offers._id": offerID,
   });
   return getDoc;
 

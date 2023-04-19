@@ -62,6 +62,7 @@ const ChangeStatus = async (req, res) => {
   try {
     const offerID = req.query.offerid;
     const lawyerID = req.query.lawyerid;
+    console.log(offerID, lawyerID);
 
     if (!offerID || !lawyerID) {
       res.send({
