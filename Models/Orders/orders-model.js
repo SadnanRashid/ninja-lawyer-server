@@ -35,6 +35,7 @@ const QueryUserOrders = async (userID, collection) => {
 // Post an order with status pending
 const QueryPostOrder = async (lawyerID, data, collection) => {
   try {
+    data._id = new ObjectId();
     const query = { lawyerUID: lawyerID };
     const initSearch = await getCollection(collection).findOne(query);
 
