@@ -80,9 +80,51 @@ const QueryPostOrder = async (lawyerID, data, collection) => {
   }
 };
 
+// Change status of an order
+const QueryChangeStatus = async (
+  lawyerUID,
+  offerID,
+  offerStatus,
+  payment,
+  collection
+) => {
+  let temp = false;
+  let filterObj;
+  console.log(typeof payment);
+  if (payment == "true") {
+    filterObj = {
+      "orders.$.status": offerStatus,
+      "orders.$.payment": true,
+    };
+  } else if (payment == "false") {
+    filterObj = {
+      "orders.$.status": offerStatus,
+      "orders.$.payment": false,
+    };
+  } else {
+    filterObj = {
+      "orders.$.status": offerStatus,
+    };
+  }
+
+  const filter = {
+    lawyerUID: lawyerUID,
+    "orders._id": new ObjectId(offerID),
+  };
+
+  const update = {
+    $set: filterObj,
+  };
+
+  const getDoc = getCollection(collection).updateOne(filter, update);
+
+  return getDoc;
+};
+
 module.exports = {
   QueryPostOrder,
   QueryGetOrders,
   QueryUserOrders,
   QueryOrderWithID,
+  QueryChangeStatus,
 };

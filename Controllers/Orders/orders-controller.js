@@ -3,6 +3,7 @@ const {
   QueryGetOrders,
   QueryUserOrders,
   QueryOrderWithID,
+  QueryChangeStatus,
 } = require("../../Models/Orders/orders-model");
 const { currentTime } = require("../../Services/timestamp");
 
@@ -54,4 +55,40 @@ const PostOrder = async (req, res) => {
   }
 };
 
-module.exports = { PostOrder, GetOrders, GetUserOrders, GetOrderWithID };
+// change offer status
+const ChangeStatus = async (req, res) => {
+  try {
+    const offerID = req.query.orderid;
+    const lawyerID = req.query.lawyerid;
+    const offerStatus = req.query.offerstatus;
+    const payment = req.query.payment;
+    console.log(offerID, lawyerID);
+
+    if (!offerID || !lawyerID) {
+      res.send({
+        acknowledged: false,
+        message: "Must enter offerID and lawyerID",
+      });
+    }
+
+    const result = await QueryChangeStatus(
+      lawyerID,
+      offerID,
+      offerStatus,
+      payment,
+      "orders"
+    );
+
+    res.json(result);
+  } catch (error) {
+    res.send(error);
+  }
+};
+
+module.exports = {
+  PostOrder,
+  GetOrders,
+  GetUserOrders,
+  GetOrderWithID,
+  ChangeStatus,
+};
