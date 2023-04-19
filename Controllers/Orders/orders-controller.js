@@ -5,6 +5,10 @@ const {
 } = require("../../Models/Orders/orders-model");
 const { currentTime } = require("../../Services/timestamp");
 
+// Get a specific order details
+
+const GetOrderWithID = async (req, res) => {};
+
 // Get all orders from a user
 const GetUserOrders = async (req, res) => {
   const userID = req.params.id;

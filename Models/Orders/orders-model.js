@@ -12,6 +12,15 @@ const QueryGetOrders = async (lawyerID, collection) => {
   }
 };
 
+// Get an specific order
+const QueryOrderWithID = (id, collection) => {
+  try {
+    const result = getCollection(collection).findOne();
+  } catch (error) {
+    resizeBy.send(error);
+  }
+};
+
 // Get users offers:
 const QueryUserOrders = async (userID, collection) => {
   try {
