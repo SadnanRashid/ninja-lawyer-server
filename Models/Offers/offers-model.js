@@ -13,6 +13,8 @@ const QuerySpecificOffer = async (lawyerID, userID, collection) => {
 // Post an order with status pending
 const QueryPostOffer = async (lawyerID, data, collection) => {
   try {
+    data._id = new ObjectId();
+    console.log(data._id);
     const query = { lawyerUID: lawyerID };
     const initSearch = await getCollection(collection).findOne(query);
 
@@ -44,10 +46,24 @@ const QueryChangeStatus = async (
   offerStatus,
   collection
 ) => {
-  const getDoc = await getCollection(collection).findOne({
+  const filter = {
     lawyerUID: lawyerUID,
-    "offers._id": offerID,
-  });
+    "offers._id": new ObjectId(offerID),
+  };
+
+  const update = {
+    $set: {
+      "offers.$.offerstatus": offerStatus,
+    },
+  };
+
+  const getDoc = getCollection(collection).updateOne(filter, update);
+  // .then((result) => {
+  //   console.log(`${result.modifiedCount} document updated`);
+  // })
+  // .catch((err) => console.error(err))
+  // .finally(() => client.close());
+
   return getDoc;
 
   // const changeDoc = await getCollection.updateOne({ lawyerUID: lawyerUID });

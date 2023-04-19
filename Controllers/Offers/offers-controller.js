@@ -62,6 +62,7 @@ const ChangeStatus = async (req, res) => {
   try {
     const offerID = req.query.offerid;
     const lawyerID = req.query.lawyerid;
+    const offerStatus = req.query.offerstatus;
     console.log(offerID, lawyerID);
 
     if (!offerID || !lawyerID) {
@@ -74,7 +75,7 @@ const ChangeStatus = async (req, res) => {
     const result = await QueryChangeStatus(
       lawyerID,
       offerID,
-      "complete",
+      offerStatus,
       "offers"
     );
 
