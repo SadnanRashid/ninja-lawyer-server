@@ -58,15 +58,8 @@ const QueryChangeStatus = async (
   };
 
   const getDoc = getCollection(collection).updateOne(filter, update);
-  // .then((result) => {
-  //   console.log(`${result.modifiedCount} document updated`);
-  // })
-  // .catch((err) => console.error(err))
-  // .finally(() => client.close());
 
   return getDoc;
-
-  // const changeDoc = await getCollection.updateOne({ lawyerUID: lawyerUID });
 };
 
 module.exports = { QuerySpecificOffer, QueryPostOffer, QueryChangeStatus };
