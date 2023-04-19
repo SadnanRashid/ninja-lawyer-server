@@ -14,7 +14,7 @@ const {
 router.post("/add/:id", PostOffer);
 router.get("/get/specific", GetSpecificOffer);
 router.get("/get/:id", GetOffer);
-router.get("/get/:id", GetUserOffers);
+router.get("/user/get/:id", GetUserOffers);
 router.put("/status/change", ChangeStatus);
 
 // return router

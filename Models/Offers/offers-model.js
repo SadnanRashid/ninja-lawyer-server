@@ -13,11 +13,18 @@ const QuerySpecificOffer = async (lawyerID, userID, collection) => {
 // Get users offers:
 const QueryUserOffers = async (userID, collection) => {
   try {
-    const result = await getCollection(collection).findMany(
-      { orders: { $elemMatch: { UID: userID } } },
-      { orders: 1 }
-    );
-    return result;
+    const result = await getCollection(collection).aggregate([
+      { $match: { "offers.UID": userID } },
+      { $unwind: "$offers" },
+      { $match: { "offers.UID": userID } },
+      { $group: { _id: null, offers: { $push: "$offers" } } },
+      { $project: { _id: 0, offers: 1 } },
+    ]);
+
+    const temp = await result.toArray();
+    console.log(temp);
+    const offersArray = [...temp[0].offers];
+    return offersArray;
   } catch (error) {
     return error;
   }

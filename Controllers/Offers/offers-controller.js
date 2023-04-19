@@ -16,7 +16,9 @@ const {
 // Get all offers from a user
 const GetUserOffers = async (req, res) => {
   const userID = req.params.id;
+
   const result = await QueryUserOffers(userID, "offers");
+  // console.log(result);
   res.json(result);
 };
 
@@ -54,7 +56,7 @@ const PostOffer = async (req, res) => {
     data.timestamp = currentTime();
     // Set payment as false and offer status as false
     data.payment = false;
-    data.offerstatus = "offer";
+    data.status = "offer";
 
     // post offer
     const result = await QueryPostOffer(lawyerID, data, "offers");
