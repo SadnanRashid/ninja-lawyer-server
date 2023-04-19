@@ -46,9 +46,11 @@ const QueryChangeStatus = async (
 ) => {
   const getDoc = await getCollection(collection).findOne({
     lawyerUID: lawyerUID,
+    "offers._id": new ObjectId(offerID),
   });
+  return getDoc;
 
-  const changeDoc = await getCollection.updateOne({ lawyerUID: lawyerUID });
+  // const changeDoc = await getCollection.updateOne({ lawyerUID: lawyerUID });
 };
 
-module.exports = { QuerySpecificOffer, QueryPostOffer };
+module.exports = { QuerySpecificOffer, QueryPostOffer, QueryChangeStatus };

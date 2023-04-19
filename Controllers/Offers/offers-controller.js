@@ -5,6 +5,7 @@ const {
 const {
   QuerySpecificOffer,
   QueryPostOffer,
+  QueryChangeStatus,
 } = require("../../Models/Offers/offers-model");
 const { currentTime } = require("../../Services/timestamp");
 const {
@@ -68,9 +69,18 @@ const ChangeStatus = async (req, res) => {
         message: "Must enter offerID and lawyerID",
       });
     }
+
+    const result = await QueryChangeStatus(
+      lawyerID,
+      offerID,
+      "complete",
+      "offers"
+    );
+
+    res.json(result);
   } catch (error) {
     res.send(error);
   }
 };
 
-module.exports = { GetSpecificOffer, GetOffer, PostOffer };
+module.exports = { GetSpecificOffer, GetOffer, PostOffer, ChangeStatus };
