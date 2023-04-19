@@ -13,7 +13,7 @@ const QuerySpecificOffer = async (lawyerID, userID, collection) => {
 // Get users offers:
 const QueryUserOffers = async (userID, collection) => {
   try {
-    const result = await getCollection.findMany(
+    const result = await getCollection(collection).findMany(
       { orders: { $elemMatch: { UID: userID } } },
       { orders: 1 }
     );
@@ -75,4 +75,9 @@ const QueryChangeStatus = async (
   return getDoc;
 };
 
-module.exports = { QuerySpecificOffer, QueryPostOffer, QueryChangeStatus };
+module.exports = {
+  QuerySpecificOffer,
+  QueryPostOffer,
+  QueryChangeStatus,
+  QueryUserOffers,
+};

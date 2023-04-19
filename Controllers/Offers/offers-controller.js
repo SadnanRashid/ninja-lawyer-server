@@ -6,11 +6,19 @@ const {
   QuerySpecificOffer,
   QueryPostOffer,
   QueryChangeStatus,
+  QueryUserOffers,
 } = require("../../Models/Offers/offers-model");
 const { currentTime } = require("../../Services/timestamp");
 const {
   getSpecificUserElement,
 } = require("../../Services/Offers/specific-offer");
+
+// Get all offers from a user
+const GetUserOffers = async (req, res) => {
+  const userID = req.params.id;
+  const result = await QueryUserOffers(userID, "offers");
+  res.json(result);
+};
 
 // Get specific user offers
 const GetSpecificOffer = async (req, res) => {
@@ -46,7 +54,7 @@ const PostOffer = async (req, res) => {
     data.timestamp = currentTime();
     // Set payment as false and offer status as false
     data.payment = false;
-    data.offerstatus = "pending";
+    data.offerstatus = "offer";
 
     // post offer
     const result = await QueryPostOffer(lawyerID, data, "offers");
@@ -85,4 +93,10 @@ const ChangeStatus = async (req, res) => {
   }
 };
 
-module.exports = { GetSpecificOffer, GetOffer, PostOffer, ChangeStatus };
+module.exports = {
+  GetSpecificOffer,
+  GetOffer,
+  PostOffer,
+  ChangeStatus,
+  GetUserOffers,
+};
