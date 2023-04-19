@@ -7,11 +7,21 @@ const {
   QueryPostOffer,
   QueryChangeStatus,
   QueryUserOffers,
+  QueryOfferWithID,
 } = require("../../Models/Offers/offers-model");
 const { currentTime } = require("../../Services/timestamp");
 const {
   getSpecificUserElement,
 } = require("../../Services/Offers/specific-offer");
+
+// Get a specific offer details
+
+const GetOfferWithID = async (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  const result = await QueryOfferWithID(id, "offers");
+  res.json(result);
+};
 
 // Get all offers from a user
 const GetUserOffers = async (req, res) => {
@@ -101,4 +111,5 @@ module.exports = {
   PostOffer,
   ChangeStatus,
   GetUserOffers,
+  GetOfferWithID,
 };

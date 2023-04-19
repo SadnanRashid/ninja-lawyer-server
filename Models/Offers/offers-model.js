@@ -1,5 +1,6 @@
 const { getCollection } = require("../database");
 const { ObjectId } = require("mongodb");
+const { filterArray } = require("../../Services/Offers/filterOffer");
 
 const QuerySpecificOffer = async (lawyerID, userID, collection) => {
   try {
@@ -83,9 +84,29 @@ const QueryChangeStatus = async (
   return getDoc;
 };
 
+// Get an specific order
+const QueryOfferWithID = async (id, collection) => {
+  try {
+    const ID = new ObjectId(id);
+    console.log(ID);
+    const result = await getCollection(collection).find({
+      offers: { $elemMatch: { _id: ID } },
+    });
+    const temp = await result.toArray();
+    const filterResult = filterArray(temp[0].offers, id);
+    console.log(temp[0].offers);
+    return filterResult;
+    // return temp[0].matchedOrders[0];
+    return temp;
+  } catch (error) {
+    return error;
+  }
+};
+
 module.exports = {
   QuerySpecificOffer,
   QueryPostOffer,
   QueryChangeStatus,
   QueryUserOffers,
+  QueryOfferWithID,
 };

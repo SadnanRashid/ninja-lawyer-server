@@ -32,11 +32,6 @@ const QueryOrderWithID = async (id, collection) => {
     ]);
     const temp = await result.toArray();
     return temp[0].matchedOrders[0];
-
-    // const temp = result.toArray();
-    // const offersArray = [...temp[0].matchedOrders];
-
-    // return offersArray;
   } catch (error) {
     return error;
   }
