@@ -34,6 +34,7 @@ const QueryUserOffers = async (userID, collection) => {
 const QueryPostOffer = async (lawyerID, data, collection) => {
   try {
     data._id = new ObjectId();
+    data.lawyerUID = lawyerID;
     console.log(data._id);
     const query = { lawyerUID: lawyerID };
     const initSearch = await getCollection(collection).findOne(query);
