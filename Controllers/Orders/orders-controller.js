@@ -24,6 +24,7 @@ const PostOrder = async (req, res) => {
     data.timestamp = currentTime();
     // Post a status with pending
     data.status = "pending";
+    data.payment = false;
 
     console.log(lawyerID, data);
 
