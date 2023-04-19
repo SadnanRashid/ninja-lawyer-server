@@ -3,17 +3,12 @@ const router = express.Router();
 const {
   PostOrder,
   GetOrders,
+  GetUserOrders,
 } = require("../../Controllers/Orders/orders-controller");
-
-const {
-  GetSpecificOffer,
-  GetOffer,
-  PostOffer,
-} = require("../../Controllers/Offers/offers-controller");
 
 // Order routes
 router.post("/add/:id", PostOrder);
 router.get("/get/:id", GetOrders);
-
+router.get("/user/get/:id", GetUserOrders);
 // return router
 module.exports = router;

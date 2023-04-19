@@ -11,6 +11,27 @@ const QueryGetOrders = async (lawyerID, collection) => {
   }
 };
 
+// Get users offers:
+const QueryUserOrders = async (userID, collection) => {
+  try {
+    const result = await getCollection(collection).aggregate([
+      { $match: { "orders.UID": userID } },
+      { $unwind: "$orders" },
+      { $match: { "orders.UID": userID } },
+      { $group: { _id: null, orders: { $push: "$orders" } } },
+      { $project: { _id: 0, orders: 1 } },
+    ]);
+
+    const temp = await result.toArray();
+    console.log(temp);
+    console.log(temp);
+    const ordersArray = [...temp[0].orders];
+    return ordersArray;
+  } catch (error) {
+    return error;
+  }
+};
+
 // Post an order with status pending
 const QueryPostOrder = async (lawyerID, data, collection) => {
   try {
@@ -39,4 +60,4 @@ const QueryPostOrder = async (lawyerID, data, collection) => {
   }
 };
 
-module.exports = { QueryPostOrder, QueryGetOrders };
+module.exports = { QueryPostOrder, QueryGetOrders, QueryUserOrders };

@@ -1,8 +1,18 @@
 const {
   QueryPostOrder,
   QueryGetOrders,
+  QueryUserOrders,
 } = require("../../Models/Orders/orders-model");
 const { currentTime } = require("../../Services/timestamp");
+
+// Get all orders from a user
+const GetUserOrders = async (req, res) => {
+  const userID = req.params.id;
+  console.log(userID);
+  const result = await QueryUserOrders(userID, "orders");
+
+  res.json(result);
+};
 
 // Controller to get an lawyer orders from DB
 const GetOrders = async (req, res) => {
@@ -25,6 +35,7 @@ const PostOrder = async (req, res) => {
     // Post a status with pending
     data.status = "pending";
     data.payment = false;
+    data.lawyerUID = lawyerID;
 
     console.log(lawyerID, data);
 
@@ -35,4 +46,4 @@ const PostOrder = async (req, res) => {
   }
 };
 
-module.exports = { PostOrder, GetOrders };
+module.exports = { PostOrder, GetOrders, GetUserOrders };
