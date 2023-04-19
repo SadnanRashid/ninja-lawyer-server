@@ -74,7 +74,7 @@ const QueryChangeStatus = async (
 
   const update = {
     $set: {
-      "offers.$.offerstatus": offerStatus,
+      "offers.$.status": offerStatus,
     },
   };
 
