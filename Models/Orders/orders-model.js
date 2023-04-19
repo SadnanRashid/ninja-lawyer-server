@@ -15,7 +15,12 @@ const QueryGetOrders = async (lawyerID, collection) => {
 // Get an specific order
 const QueryOrderWithID = (id, collection) => {
   try {
-    const result = getCollection(collection).findOne();
+    const result = getCollection(collection).findOne({
+      orders: {
+        $elemMatch: { UID: new ObjectId(id) },
+      },
+    });
+    return result;
   } catch (error) {
     resizeBy.send(error);
   }
@@ -71,4 +76,9 @@ const QueryPostOrder = async (lawyerID, data, collection) => {
   }
 };
 
-module.exports = { QueryPostOrder, QueryGetOrders, QueryUserOrders };
+module.exports = {
+  QueryPostOrder,
+  QueryGetOrders,
+  QueryUserOrders,
+  QueryOrderWithID,
+};

@@ -2,12 +2,17 @@ const {
   QueryPostOrder,
   QueryGetOrders,
   QueryUserOrders,
+  QueryOrderWithID,
 } = require("../../Models/Orders/orders-model");
 const { currentTime } = require("../../Services/timestamp");
 
 // Get a specific order details
 
-const GetOrderWithID = async (req, res) => {};
+const GetOrderWithID = async (req, res) => {
+  const id = req.params.id;
+  const result = await QueryOrderWithID(id);
+  res.json(result);
+};
 
 // Get all orders from a user
 const GetUserOrders = async (req, res) => {
@@ -49,4 +54,4 @@ const PostOrder = async (req, res) => {
   }
 };
 
-module.exports = { PostOrder, GetOrders, GetUserOrders };
+module.exports = { PostOrder, GetOrders, GetUserOrders, GetOrderWithID };
