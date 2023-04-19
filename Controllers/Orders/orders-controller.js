@@ -37,9 +37,8 @@ const PostOrder = async (req, res) => {
     data.payment = false;
     data.lawyerUID = lawyerID;
 
-    console.log(lawyerID, data);
-
     const result = await QueryPostOrder(lawyerID, data, "orders");
+    console.log(lawyerID, result);
     res.json(result);
   } catch (error) {
     res.send(error);
