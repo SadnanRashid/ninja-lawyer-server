@@ -10,7 +10,7 @@ const { currentTime } = require("../../Services/timestamp");
 
 const GetOrderWithID = async (req, res) => {
   const id = req.params.id;
-  const result = await QueryOrderWithID(id);
+  const result = await QueryOrderWithID(id, "orders");
   res.json(result);
 };
 

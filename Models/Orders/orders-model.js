@@ -13,16 +13,32 @@ const QueryGetOrders = async (lawyerID, collection) => {
 };
 
 // Get an specific order
-const QueryOrderWithID = (id, collection) => {
+const QueryOrderWithID = async (id, collection) => {
   try {
-    const result = getCollection(collection).findOne({
-      orders: {
-        $elemMatch: { UID: new ObjectId(id) },
+    const ID = new ObjectId(id);
+    console.log(ID);
+    const result = await getCollection(collection).aggregate([
+      {
+        $project: {
+          matchedOrders: {
+            $filter: {
+              input: "$orders",
+              as: "order",
+              cond: { $eq: ["$$order._id", ID] },
+            },
+          },
+        },
       },
-    });
-    return result;
+    ]);
+    const temp = await result.toArray();
+    return temp[0].matchedOrders[0];
+
+    // const temp = result.toArray();
+    // const offersArray = [...temp[0].matchedOrders];
+
+    // return offersArray;
   } catch (error) {
-    resizeBy.send(error);
+    return error;
   }
 };
 
