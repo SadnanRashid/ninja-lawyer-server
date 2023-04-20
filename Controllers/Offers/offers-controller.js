@@ -13,9 +13,9 @@ const { currentTime } = require("../../Services/timestamp");
 const {
   getSpecificUserElement,
 } = require("../../Services/Offers/specific-offer");
+const { reverseArray } = require("../../Services/Offers/reverseArray");
 
 // Get a specific offer details
-
 const GetOfferWithID = async (req, res) => {
   const id = req.params.id;
   console.log(id);
@@ -51,7 +51,8 @@ const GetSpecificOffer = async (req, res) => {
 const GetOffer = async (req, res) => {
   try {
     const lawyerID = req.params.id;
-    const result = await QueryGetOrders(lawyerID, "offers");
+    let result = await QueryGetOrders(lawyerID, "offers");
+    result = reverseArray(result);
     res.json(result);
   } catch (error) {
     res.send(error);
