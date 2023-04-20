@@ -6,7 +6,7 @@ const {
   QueryChangeStatus,
 } = require("../../Models/Orders/orders-model");
 const { currentTime } = require("../../Services/timestamp");
-const { reverseArray } = require("../../Services/Offers/reverseArray");
+const { filterReviewOnTime } = require("../../Services/Reviews/reviews-filter");
 
 // Get a specific order details
 
@@ -31,7 +31,7 @@ const GetOrders = async (req, res) => {
     const lawyerID = req.params.id;
     //
     let result = await QueryGetOrders(lawyerID, "orders");
-    result = reverseArray(result);
+    result = filterReviewOnTime(result);
     res.json(result);
   } catch (error) {
     res.send(error);

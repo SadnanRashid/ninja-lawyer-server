@@ -14,6 +14,7 @@ const {
   getSpecificUserElement,
 } = require("../../Services/Offers/specific-offer");
 const { reverseArray } = require("../../Services/Offers/reverseArray");
+const { filterReviewOnTime } = require("../../Services/Reviews/reviews-filter");
 
 // Get a specific offer details
 const GetOfferWithID = async (req, res) => {
@@ -51,8 +52,9 @@ const GetSpecificOffer = async (req, res) => {
 const GetOffer = async (req, res) => {
   try {
     const lawyerID = req.params.id;
-    let result = await QueryGetOrders(lawyerID, "offers");
-    result = reverseArray(result);
+    const result = await QueryGetOrders(lawyerID, "offers");
+    const result2 = filterReviewOnTime(result.offers);
+    console.log(result2);
     res.json(result);
   } catch (error) {
     res.send(error);
