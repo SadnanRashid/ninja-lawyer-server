@@ -1,9 +1,9 @@
 const reverseArray = (array) => {
-  let returnArray = [];
-
-  for (let i = array.length; i <= 0; i--) {
-    reverseArray.push(array[i]);
+  const reversedArray = [];
+  for (let i = array.length - 1; i >= 0; i--) {
+    reversedArray.push(array[i]);
   }
-
-  return returnArray;
+  return reversedArray;
 };
+
+module.export = { reverseArray };
