@@ -121,6 +121,7 @@ const QueryChangeStatus = async (
   return getDoc;
 };
 
+// export module
 module.exports = {
   QueryPostOrder,
   QueryGetOrders,
