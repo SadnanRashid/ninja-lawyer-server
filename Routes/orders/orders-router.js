@@ -14,5 +14,6 @@ router.get("/get/:id", GetOrders);
 router.get("/get/unique/:id", GetOrderWithID);
 router.get("/user/get/:id", GetUserOrders);
 router.put("/status/change", ChangeStatus);
-// return router
+
+// export router
 module.exports = router;
