@@ -45,6 +45,8 @@ const filterReviewOnTimeOffers = (arrayy) => {
   return array;
 };
 
+// exports:
+
 module.exports = {
   filterReviewsRatings,
   filterReviewOnTime,
