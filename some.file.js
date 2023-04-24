@@ -709,24 +709,6 @@ const arr = [
     summary: "Fifteen years experience lawyer.",
   },
   {
-    First_Name: "Lawyer42",
-    Last_Name: "Llast42",
-    contact: "2200220042",
-    city: "Waraseoni",
-    state: "Madhya Pradesh",
-    language: "Hindi, English",
-    email: "lawyer42@test.in",
-    password: "123456",
-    rate: "37",
-    id: "NATIONAL_ID_42",
-    barID: "BAR_ID_42",
-    barYear: "33382",
-    specialties:
-      "Divorce & Child Custody, Property & Real Estate, Civil Matters, Cyber Crime, ",
-    summary:
-      "Advocate A. Ashok Kumar has been practising for 9 years in Civil, Criminal & Family matters cases and handling the matters ethically and professionally. He also handles the NI Act, Recovery, Medical N",
-  },
-  {
     First_Name: "Lawyer43",
     Last_Name: "Llast43",
     contact: "2200220043",
