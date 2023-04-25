@@ -28,10 +28,14 @@ const PostPayment = async (req, res) => {
 
   try {
     const response = await instance.orders.create(options);
+    let databaseResult = {};
     if (response.amount) {
-      await QueryAddPayment({ userID, lawyerID, amount }, "payments");
+      databaseResult = await QueryAddPayment(
+        { userID, lawyerID, amount, timestamp },
+        "payments"
+      );
     }
-    res.json({ response });
+    res.json({ response, databaseResult });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
