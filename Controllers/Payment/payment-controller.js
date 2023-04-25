@@ -20,4 +20,12 @@ const PostPayment = async (req, res) => {
     receipt: "order_receipt",
     payment_capture: 1,
   };
+
+  try {
+    const response = await instance.orders.create(options);
+    res.json({ orderId: response.id, response });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
