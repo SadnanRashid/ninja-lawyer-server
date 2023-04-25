@@ -9,21 +9,26 @@ const instance = new Razorpay({
 
 const PostPayment = async (req, res) => {
   const data = req.body;
-  const { userID, lawyerID, amount } = data;
+  let { userID, lawyerID, amount } = data;
+  amount = parseInt(amount);
+  const timestamp = currentTime();
 
-  if (!userID || !lawyerID || !amount || !timestamp) {
-    req.json({ message: "Invalid request" });
+  if (!userID || !lawyerID || !amount) {
+    // console.log(userID, lawyerID);
+    res.json({ message: "Invalid request" });
   }
+
   const options = {
-    amount: amount * 100,
+    amount: amount,
     currency: "INR",
     receipt: "order_receipt",
     payment_capture: 1,
   };
+  console.log(typeof options.amount, options.amount);
 
   try {
     const response = await instance.orders.create(options);
-    res.json({ orderId: response.id, response });
+    res.json({ response });
   } catch (error) {
     console.log(error);
     res.status(500).json({ message: "Internal server error" });
