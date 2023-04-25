@@ -32,6 +32,9 @@ app.use("/api/orders/", orderRouter);
 // Get offer routes
 const offerRouter = require("./Routes/orders/offer-router");
 app.use("/api/offers/", offerRouter);
+// Get payment router
+const paymentRouter = require("./Routes/Payments/payment-router");
+app.use("/api/payments", paymentRouter);
 
 app.get("/", (req, res) => {
   res.send({ message: "Working..." });
