@@ -28,6 +28,9 @@ const PostPayment = async (req, res) => {
 
   try {
     const response = await instance.orders.create(options);
+    if (response.amount) {
+      await QueryAddPayment({ userID, lawyerID, amount }, "payments");
+    }
     res.json({ response });
   } catch (error) {
     console.log(error);

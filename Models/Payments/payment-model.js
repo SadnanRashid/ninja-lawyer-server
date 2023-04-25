@@ -1,7 +1,7 @@
 const { ObjectId } = require("mongodb");
 const { getCollection } = require("../database");
 
-const QueryAddPayment = async (data) => {
+const QueryAddPayment = async (data, collection) => {
   const { userID, lawyerID, amount } = data;
 
   const addPayment = await getCollection(collection).insertOne({
