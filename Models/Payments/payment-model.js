@@ -17,3 +17,5 @@ const QueryAddPayment = async (data) => {
 
   return addPayment;
 };
+
+module.exports = { QueryAddPayment };
