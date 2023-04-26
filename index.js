@@ -41,6 +41,5 @@ app.get("/", (req, res) => {
 });
 
 app.get("/check", (req, res) => {
-  // const result = checkConnection();
   res.json(req.query);
 });
