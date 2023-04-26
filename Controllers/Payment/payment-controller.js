@@ -14,7 +14,6 @@ const PostPayment = async (req, res) => {
   const timestamp = currentTime();
 
   if (!userID || !lawyerID || !amount) {
-    // console.log(userID, lawyerID);
     res.json({ message: "Invalid request" });
   }
 
