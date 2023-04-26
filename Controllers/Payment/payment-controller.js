@@ -34,6 +34,7 @@ const PostPayment = async (req, res) => {
         { userID, lawyerID, amount, timestamp },
         "payments"
       );
+      //
     }
     res.json({ response, databaseResult });
   } catch (error) {
