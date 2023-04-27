@@ -3,8 +3,8 @@ const Razorpay = require("razorpay");
 const { QueryAddPayment } = require("../../Models/Payments/payment-model");
 
 const instance = new Razorpay({
-  key_id: "rzp_test_2NMuV5JdVMywyO",
-  key_secret: "1GoMQfaCMWSWecys1DtZu3W2",
+  key_id: "rzp_test_IYzwCFriTotFoj",
+  key_secret: "hXDME5sN7bySYCEVD4iKiAIJ",
 });
 
 const PostPayment = async (req, res) => {
