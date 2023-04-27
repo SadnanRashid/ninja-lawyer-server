@@ -42,4 +42,27 @@ const PostPayment = async (req, res) => {
   }
 };
 
-module.exports = { PostPayment };
+const PaymentVerification = (req, res) => {
+  // do a validation
+  const secret = "12345678";
+
+  const crypto = require("crypto");
+
+  const shasum = crypto.createHmac("sha256", secret);
+  shasum.update(JSON.stringify(req.body));
+  const digest = shasum.digest("hex");
+
+  if (digest === req.headers["x-razorpay-signature"]) {
+    require("fs").writeFileSync(
+      "payment1.json",
+      JSON.stringify(req.body, null, 4)
+    );
+  }
+  // else {
+  // 	// pass it
+  // }
+
+  res.json({ status: "ok" });
+};
+
+module.exports = { PostPayment, PaymentVerification };
