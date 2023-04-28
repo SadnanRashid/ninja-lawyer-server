@@ -6,6 +6,7 @@ const {
   FetchUsers,
   GetReviewsOnRating,
   GetAllReviews,
+  PostReply,
 } = require("../../Controllers/Lawyer_Reviews/lawyer-reviews-controller");
 
 router.get("/test", () => {
@@ -13,6 +14,8 @@ router.get("/test", () => {
 });
 // Post new review data to database
 router.post("/add/:id", PostReview);
+// Post new review reply to database
+router.post("/reply/add", PostReply);
 // Get all lawyers
 router.get("/get/all/:id", GetAllReviews);
 // Get all reviews data to database

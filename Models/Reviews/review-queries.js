@@ -2,6 +2,7 @@ const { getCollection } = require("../database");
 const {
   filterReviewsRatings,
 } = require("../../Services/Reviews/reviews-filter");
+const { ObjectId } = require("mongodb");
 
 // Get all reviews of a lawyer
 const QueryGetAllReviews = async (lawyerUID, collection) => {
@@ -74,8 +75,31 @@ const QueryFetchUsers = async (uids) => {
   }
 };
 
+// Add reply to a review
+const QueryAddReviewReply = async (reply, lawyerID, reviewID, collection) => {
+  console.log(reply, lawyerID, reviewID);
+  try {
+    const getReviewRef = await getCollection(collection).updateOne(
+      {
+        lawyerUID: lawyerID,
+        "reviews._id": new ObjectId(reviewID),
+      },
+      {
+        $set: {
+          "reviews.$.reply": reply,
+        },
+      }
+    );
+    return getReviewRef;
+  } catch (error) {
+    return error;
+  }
+};
+
 const QueryAddReview = async (lawyerID, review, collection) => {
   try {
+    // add object id to each reviews
+    review._id = new ObjectId();
     const query = { lawyerUID: lawyerID };
     const initSearch = await getCollection(collection).findOne({
       lawyerUID: lawyerID,
@@ -109,6 +133,7 @@ module.exports = {
   QueryFetchUsers,
   QueryRatingReviews,
   QueryGetAllReviews,
+  QueryAddReviewReply,
 };
 
 // {UID: "asfiu3ruiwjci",

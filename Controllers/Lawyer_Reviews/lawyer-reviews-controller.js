@@ -1,4 +1,4 @@
-const { QueryAddUser } = require("../../Models/User/user-initial");
+// const { QueryAddUser } = require("../../Models/User/user-initial");
 const { currentTime } = require("../../Services/timestamp");
 const {
   QueryGetReviews,
@@ -6,8 +6,25 @@ const {
   QueryFetchUsers,
   QueryRatingReviews,
   QueryGetAllReviews,
+  QueryAddReviewReply,
 } = require("../../Models/Reviews/review-queries");
 const { filterReviewOnTime } = require("../../Services/Reviews/reviews-filter");
+
+// Post a reply on review
+const PostReply = async (req, res) => {
+  const { reply, lawyerID, _id } = req.body;
+
+  if (!reply || !lawyerID || !_id) {
+    res.status(500).json({ message: "input error" });
+  }
+  const result = await QueryAddReviewReply(
+    reply,
+    lawyerID,
+    _id,
+    "lawyer_reviews"
+  );
+  res.send(result);
+};
 
 const PostReview = async (req, res) => {
   const lawyerID = req.params.id;
@@ -86,4 +103,5 @@ module.exports = {
   FetchUsers,
   GetReviewsOnRating,
   GetAllReviews,
+  PostReply,
 };
