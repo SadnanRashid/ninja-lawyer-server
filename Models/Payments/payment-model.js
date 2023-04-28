@@ -5,11 +5,13 @@ const { getCollection } = require("../database");
 const QueryGetTransactions = async (userType, UID) => {
   let result;
   if (userType === "lawyer") {
+    console.log(userType);
     result = await getCollection("payments").find({ LawyerID: UID });
   } else if (userType === "user") {
+    console.log(userType);
     result = await getCollection("payments").find({ UserID: UID });
   }
-  return result;
+  return result.toArray();
 };
 
 const QueryAddPayment = async (data, collection) => {
