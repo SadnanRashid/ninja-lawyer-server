@@ -14,7 +14,9 @@ const instance = new Razorpay({
 const GetPayment = async (req, res) => {
   const userType = req.query.usertype;
   const UID = req.query.uid;
-  QueryGetTransactions(userType, UID);
+  console.log(userType, UID);
+  const result = await QueryGetTransactions(userType, UID);
+  res.json(result);
 };
 
 const PostPayment = async (req, res) => {

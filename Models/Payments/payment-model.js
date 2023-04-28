@@ -5,9 +5,9 @@ const { getCollection } = require("../database");
 const QueryGetTransactions = async (userType, UID) => {
   let result;
   if (userType === "lawyer") {
-    result = getCollection("payments").find({ LawyerID: UID });
+    result = await getCollection("payments").find({ LawyerID: UID });
   } else if (userType === "user") {
-    result = getCollection("payments").find({ UserID: UID });
+    result = await getCollection("payments").find({ UserID: UID });
   }
   return result;
 };
