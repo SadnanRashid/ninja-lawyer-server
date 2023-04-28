@@ -9,7 +9,7 @@ const instance = new Razorpay({
 
 const PostPayment = async (req, res) => {
   const data = req.body;
-  let { userID, lawyerID, amount } = data;
+  let { userID, lawyerID, amount, paymentId, orderId } = data;
   amount = parseInt(amount);
   const timestamp = currentTime();
 
@@ -29,10 +29,7 @@ const PostPayment = async (req, res) => {
     const response = await instance.orders.create(options);
     let databaseResult = {};
     if (response.amount) {
-      databaseResult = await QueryAddPayment(
-        { userID, lawyerID, amount, timestamp },
-        "payments"
-      );
+      databaseResult = await QueryAddPayment(data, "payments");
       //
     }
     res.json({ response, databaseResult });
