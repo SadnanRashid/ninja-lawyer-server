@@ -14,7 +14,7 @@ const PostPayment = async (req, res) => {
   data.timestamp = currentTime();
 
   if (!userID || !lawyerID || !amount) {
-    res.json({ message: "Invalid request" });
+    return res.json({ message: "Invalid request" });
   }
 
   const options = {
