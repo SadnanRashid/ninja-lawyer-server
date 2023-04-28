@@ -18,7 +18,7 @@ const PostPayment = async (req, res) => {
   }
 
   const options = {
-    amount: amount,
+    amount: amount * 100,
     currency: "INR",
     receipt: "order_receipt",
     payment_capture: 1,
