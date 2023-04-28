@@ -11,7 +11,7 @@ const PostPayment = async (req, res) => {
   const data = req.body;
   let { userID, lawyerID, amount, paymentId, orderId } = data;
   amount = parseInt(amount);
-  const timestamp = currentTime();
+  data.timestamp = currentTime();
 
   if (!userID || !lawyerID || !amount) {
     res.json({ message: "Invalid request" });
