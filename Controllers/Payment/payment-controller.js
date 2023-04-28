@@ -9,7 +9,7 @@ const instance = new Razorpay({
 
 const PostPayment = async (req, res) => {
   const data = req.body;
-  let { userID, lawyerID, amount, paymentId, orderId } = data;
+  let { userID, lawyerID, amount, paymentID, orderID } = data;
   amount = parseInt(amount);
   data.timestamp = currentTime();
 
