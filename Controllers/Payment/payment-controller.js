@@ -1,11 +1,21 @@
 const { currentTime } = require("../../Services/timestamp");
 const Razorpay = require("razorpay");
-const { QueryAddPayment } = require("../../Models/Payments/payment-model");
+const {
+  QueryAddPayment,
+  QueryGetTransactions,
+} = require("../../Models/Payments/payment-model");
 
 const instance = new Razorpay({
   key_id: "rzp_test_IYzwCFriTotFoj",
   key_secret: "hXDME5sN7bySYCEVD4iKiAIJ",
 });
+
+// Get payments transactions of an user
+const GetPayment = async (req, res) => {
+  const userType = req.query.usertype;
+  const UID = req.query.uid;
+  QueryGetTransactions(userType, UID);
+};
 
 const PostPayment = async (req, res) => {
   const data = req.body;
@@ -55,11 +65,7 @@ const PaymentVerification = (req, res) => {
       JSON.stringify(req.body, null, 4)
     );
   }
-  // else {
-  // 	// pass it
-  // }
-
   res.json({ status: "ok" });
 };
 
-module.exports = { PostPayment, PaymentVerification };
+module.exports = { PostPayment, PaymentVerification, GetPayment };
