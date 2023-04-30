@@ -20,7 +20,8 @@ const QueryGetReviews = async (lawyerUID, collection, limit, skip) => {
   try {
     const query = { lawyerUID: lawyerUID };
     const cursor = await getCollection(collection).findOne(query);
-    const results = cursor.reviews;
+    let results = cursor.reviews;
+    results = results.reverse();
     let arrayOfReviews = [];
     if (results.length > skip) {
       for (let i = skip; i < limit + skip; i++) {
